@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina5_5" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LineChartViewController" customModule="Test" customModuleProvider="target">
+            <connections>
+                <outlet property="chartView" destination="qpF-Qu-DHD" id="4E7-jh-OGF"/>
+                <outlet property="optionsButton" destination="YBY-vZ-THR" id="VQ0-Gn-o8H"/>
+                <outlet property="view" destination="wa1-NJ-Aur" id="0Z0-Kd-yvs"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="wa1-NJ-Aur">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YBY-vZ-THR">
+                    <rect key="frame" x="328" y="4" width="78" height="35"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
+                    <inset key="contentEdgeInsets" minX="10" minY="7" maxX="10" maxY="7"/>
+                    <state key="normal" title="Options">
+                        <color key="titleColor" red="0.24040704969999999" green="0.48385584349999999" blue="0.68625134229999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="optionsButtonTapped:" destination="-1" eventType="touchUpInside" id="iOy-uQ-NGk"/>
+                    </connections>
+                </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qpF-Qu-DHD" customClass="LineChartView" customModule="Test" customModuleProvider="target">
+                    <rect key="frame" x="12" y="47" width="390" height="570"/>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="570" id="7At-hq-44T"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="YBY-vZ-THR" firstAttribute="top" secondItem="wa1-NJ-Aur" secondAttribute="top" constant="4" id="1hE-Lg-fhz"/>
+                <constraint firstItem="qpF-Qu-DHD" firstAttribute="top" secondItem="wa1-NJ-Aur" secondAttribute="top" constant="47" id="Xxm-Y5-sXL"/>
+                <constraint firstItem="qpF-Qu-DHD" firstAttribute="leading" secondItem="LMH-ea-2YW" secondAttribute="leading" constant="12" id="Zv1-y2-jBX"/>
+                <constraint firstItem="LMH-ea-2YW" firstAttribute="trailing" secondItem="YBY-vZ-THR" secondAttribute="trailing" constant="8" id="dBU-hr-S0t"/>
+                <constraint firstItem="LMH-ea-2YW" firstAttribute="trailing" secondItem="qpF-Qu-DHD" secondAttribute="trailing" constant="12" id="p8C-It-bnb"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="LMH-ea-2YW"/>
+            <point key="canvasLocation" x="157.5" y="222.5"/>
+        </view>
+    </objects>
+</document>
