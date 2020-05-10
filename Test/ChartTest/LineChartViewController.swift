@@ -117,7 +117,7 @@ class LineChartViewController: DemoBaseViewController {
         
         let set = LineChartDataSet(entries: values, label: nil)
         set.drawIconsEnabled = false
-        set.mode = .cubicBezier
+        set.mode = .horizontalBezier
         let secondColor = UIColor.hex("45FFF7")
         let firstColor = UIColor.hex("B93BA9")
 //        set1.cubicIntensity = 0.2
@@ -126,9 +126,9 @@ class LineChartViewController: DemoBaseViewController {
         set.highlightLineDashLengths = [2, 1]
         set.drawCirclesEnabled = false
         set.drawValuesEnabled = false
-        set.setColors(firstColor, secondColor)
         set.drawGradientEnabled = true
-        set.gradientPositions = [30.0, 85.0]
+        set.setColors(firstColor, secondColor)
+        set.gradientPositions = [0, 1]
         set.setCircleColor(.white)
         set.lineWidth = 6
         set.circleRadius = 3
