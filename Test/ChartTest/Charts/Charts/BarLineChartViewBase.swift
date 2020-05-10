@@ -289,6 +289,46 @@ open class BarLineChartViewBase: ChartViewBase, BarLineScatterCandleBubbleChartD
         }
 
         _legendRenderer.renderLegend(context: context)
+        
+        // Draw background highlight
+        if let highlight = _indicesToHighlight.first {
+            let pos = getMarkerPosition(highlight: highlight)
+            
+            let count = CGFloat(data?.dataSets.first?.entryCount ?? 0)
+            let width = _viewPortHandler.contentRect.width / count
+            let height = _viewPortHandler.contentRect.height
+            let y = _viewPortHandler.contentRect.origin.y
+            let highlightOrigin = CGPoint(x: pos.x - (width / 2), y: y)
+            
+            let highlightSize = CGSize(width: width, height: height)
+            let highlightRect = CGRect(origin: highlightOrigin, size: highlightSize)
+
+            
+            let highlightColor = UIColor.hex("2D1D6B")
+            context.setFillColor(highlightColor.cgColor)
+            context.setLineWidth(0)
+
+            context.addRect(highlightRect)
+            context.drawPath(using: .fillStroke)
+        }
+        
+        // Draw line chart
+        renderer.drawData(context: context)
+        
+        // Draw circle
+        if let highlight = _indicesToHighlight.first {
+            let pos = getMarkerPosition(highlight: highlight)
+            
+            let circleSize = CGSize(width: 15, height: 15)
+            let circleOrigin = CGPoint(x: pos.x - circleSize.width / 2, y: pos.y - circleSize.height / 2)
+            context.setFillColor(UIColor.white.cgColor)
+            context.setStrokeColor(UIColor.white.withAlphaComponent(0.5).cgColor)
+            context.setLineWidth(15)
+
+            let rectangle = CGRect(origin: circleOrigin, size: circleSize)
+            context.addEllipse(in: rectangle)
+            context.drawPath(using: .fillStroke)
+        }
 
         drawDescription(context: context)
         

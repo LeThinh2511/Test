@@ -609,23 +609,6 @@ open class ChartViewBase: NSUIView, ChartDataProvider, AnimatorDelegate
             {
                 continue
             }
-            
-            let count = CGFloat(set.entryCount)
-            let width = _viewPortHandler.contentRect.width / count
-            let height = _viewPortHandler.contentRect.height
-            let y = _viewPortHandler.contentRect.origin.y
-            let highlightOrigin = CGPoint(x: pos.x - (width / 2), y: y)
-            
-            let highlightSize = CGSize(width: width, height: height)
-            let highlightRect = CGRect(origin: highlightOrigin, size: highlightSize)
-
-            
-            let highlightColor = UIColor.hex("2D1D6B")
-            context.setFillColor(highlightColor.cgColor)
-            context.setLineWidth(0)
-
-            context.addRect(highlightRect)
-            context.drawPath(using: .fillStroke)
 
             // callbacks to update the content
             marker.refreshContent(entry: e, highlight: highlight)
