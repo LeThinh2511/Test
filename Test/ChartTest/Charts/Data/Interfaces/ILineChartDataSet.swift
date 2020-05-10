@@ -64,6 +64,12 @@ public protocol ILineChartDataSet: ILineRadarChartDataSet
     /// `true` if drawing the circle-holes is enabled, `false` ifnot.
     var isDrawCircleHoleEnabled: Bool { get }
     
+    /// If true, gradient lines are drawn instead of solid
+    var drawGradientEnabled: Bool { get set }
+
+    /// - returns: true if drawing gradeint lines is enabled, false if not.
+    var isDrawGradientEnabled: Bool { get }
+    
     /// This is how much (in pixels) into the dash pattern are we starting from.
     var lineDashPhase: CGFloat { get }
     
@@ -71,6 +77,9 @@ public protocol ILineChartDataSet: ILineRadarChartDataSet
     /// I.e. [2, 3] will paint [--   --   ]
     /// [1, 3, 4, 2] will paint [-   ----  -   ----  ]
     var lineDashLengths: [CGFloat]? { get set }
+    
+    /// This is the points where gradient should change color
+    var gradientPositions: [CGFloat]? { get set }
     
     /// Line cap type, default is CGLineCap.Butt
     var lineCapType: CGLineCap { get set }

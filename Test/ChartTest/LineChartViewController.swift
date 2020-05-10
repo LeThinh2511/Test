@@ -127,6 +127,8 @@ class LineChartViewController: DemoBaseViewController {
         set.drawCirclesEnabled = false
         set.drawValuesEnabled = false
         set.setColors(firstColor, secondColor)
+        set.drawGradientEnabled = true
+        set.gradientPositions = [30.0, 85.0]
         set.setCircleColor(.white)
         set.lineWidth = 6
         set.circleRadius = 3
