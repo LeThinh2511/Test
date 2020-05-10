@@ -190,26 +190,26 @@ class LineChartViewController: DemoBaseViewController {
 
 extension LineChartViewController: ChartViewDelegate {
     func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
-        let dataSetHighlight = LineChartDataSet(entries: [entry])
-        dataSetHighlight.circleRadius = 15
-        dataSetHighlight.circleHoleRadius = 8
-        dataSetHighlight.circleHoleColor = .white
-        dataSetHighlight.circleColors = [UIColor.white.withAlphaComponent(0.5)]
-        dataSetHighlight.drawCircleHoleEnabled = true
-        dataSetHighlight.valueFont = .systemFont(ofSize: 0)
-        dataSetHighlight.valueTextColor = .white
-        dataSetHighlight.highlightLineWidth = 0
-        dataSetHighlight.drawIconsEnabled = false
-        
-        if let dataSetCount = chartView.data?.dataSetCount, dataSetCount > 1 {
-            chartView.data?.dataSets.removeLast()
-        }
-        chartView.data?.dataSets.append(dataSetHighlight)
+//        let dataSetHighlight = LineChartDataSet(entries: [entry])
+//        dataSetHighlight.circleRadius = 15
+//        dataSetHighlight.circleHoleRadius = 8
+//        dataSetHighlight.circleHoleColor = .white
+//        dataSetHighlight.circleColors = [UIColor.white.withAlphaComponent(0.5)]
+//        dataSetHighlight.drawCircleHoleEnabled = true
+//        dataSetHighlight.valueFont = .systemFont(ofSize: 0)
+//        dataSetHighlight.valueTextColor = .white
+//        dataSetHighlight.highlightLineWidth = 0
+//        dataSetHighlight.drawIconsEnabled = false
+//
+//        if let dataSetCount = chartView.data?.dataSetCount, dataSetCount > 1 {
+//            chartView.data?.dataSets.removeLast()
+//        }
+//        chartView.data?.dataSets.append(dataSetHighlight)
     }
     
     func chartValueNothingSelected(_ chartView: ChartViewBase) {
-        if let dataSetCount = chartView.data?.dataSetCount, dataSetCount > 1 {
-            chartView.data?.dataSets.removeLast()
-        }
+//        if let dataSetCount = chartView.data?.dataSetCount, dataSetCount > 1 {
+//            chartView.data?.dataSets.removeLast()
+//        }
     }
 }

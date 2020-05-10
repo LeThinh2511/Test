@@ -89,14 +89,13 @@ open class BalloonMarker: MarkerImage
         
         let offset = self.offsetForDrawing(atPoint: point)
         let size = self.size
-        print("point: \(point) - offset: \(offset) - size: \(size)")
-        
-        let origin = CGPoint(x: 0, y: 100)
-        let rect = CGRect(origin: origin, size: size)
-        context.saveGState()
-        context.setFillColor(color.cgColor)
-        UIGraphicsPushContext(context)
+//        print("point: \(point) - offset: \(offset) - size: \(size)")
+        let origin = CGPoint(x: point.x, y: 100)
+        var rect = CGRect(origin: origin, size: size)
+        rect.origin.x -= size.width / 2.0
+        rect.origin.y -= size.height
         label.draw(in: rect, withAttributes: _drawAttributes)
+        
         UIGraphicsPopContext()
         context.restoreGState()
     }

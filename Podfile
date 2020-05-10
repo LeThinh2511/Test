@@ -6,8 +6,6 @@ target 'Test' do
   use_frameworks!
 
   # Pods for Test
-  pod 'RxSwift'
-  pod 'RxCocoa'
 
   target 'TestTests' do
     inherit! :search_paths
