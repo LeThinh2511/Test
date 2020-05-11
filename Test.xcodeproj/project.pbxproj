@@ -139,6 +139,7 @@
 		7B7E1C7324690A790023CDBB /* CoreGraphicsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7E1C7224690A790023CDBB /* CoreGraphicsViewController.swift */; };
 		7B7E1C7524690EE70023CDBB /* PushButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7E1C7424690EE70023CDBB /* PushButton.swift */; };
 		7B7E1C77246933F90023CDBB /* CounterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7E1C76246933F90023CDBB /* CounterView.swift */; };
+		7B7E1C7A24694C710023CDBB /* GraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7E1C7924694C710023CDBB /* GraphView.swift */; };
 		7BCA236223C6DFCD00F829B4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCA236123C6DFCD00F829B4 /* AppDelegate.swift */; };
 		7BCA236423C6DFCD00F829B4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCA236323C6DFCD00F829B4 /* SceneDelegate.swift */; };
 		7BCA236623C6DFCD00F829B4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCA236523C6DFCD00F829B4 /* ViewController.swift */; };
@@ -301,6 +302,7 @@
 		7B7E1C7224690A790023CDBB /* CoreGraphicsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreGraphicsViewController.swift; sourceTree = "<group>"; };
 		7B7E1C7424690EE70023CDBB /* PushButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushButton.swift; sourceTree = "<group>"; };
 		7B7E1C76246933F90023CDBB /* CounterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterView.swift; sourceTree = "<group>"; };
+		7B7E1C7924694C710023CDBB /* GraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphView.swift; sourceTree = "<group>"; };
 		7BCA235E23C6DFCD00F829B4 /* Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Test.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7BCA236123C6DFCD00F829B4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7BCA236323C6DFCD00F829B4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -627,9 +629,7 @@
 		7B7E1C6E246907420023CDBB /* Core Graphics */ = {
 			isa = PBXGroup;
 			children = (
-				7B7E1C7224690A790023CDBB /* CoreGraphicsViewController.swift */,
-				7B7E1C7424690EE70023CDBB /* PushButton.swift */,
-				7B7E1C76246933F90023CDBB /* CounterView.swift */,
+				7B7E1C7824694C4C0023CDBB /* Flo */,
 			);
 			path = "Core Graphics";
 			sourceTree = "<group>";
@@ -659,6 +659,17 @@
 				7BCA236C23C6DFCE00F829B4 /* LaunchScreen.storyboard */,
 			);
 			path = Main;
+			sourceTree = "<group>";
+		};
+		7B7E1C7824694C4C0023CDBB /* Flo */ = {
+			isa = PBXGroup;
+			children = (
+				7B7E1C7224690A790023CDBB /* CoreGraphicsViewController.swift */,
+				7B7E1C7424690EE70023CDBB /* PushButton.swift */,
+				7B7E1C76246933F90023CDBB /* CounterView.swift */,
+				7B7E1C7924694C710023CDBB /* GraphView.swift */,
+			);
+			path = Flo;
 			sourceTree = "<group>";
 		};
 		7BCA235523C6DFCC00F829B4 = {
@@ -976,6 +987,7 @@
 				7B09CB7C246504CD00DFE73E /* Highlight.swift in Sources */,
 				7B09CBBB246504CD00DFE73E /* PieChartDataEntry.swift in Sources */,
 				7B09CBA7246504CD00DFE73E /* MarkerImage.swift in Sources */,
+				7B7E1C7A24694C710023CDBB /* GraphView.swift in Sources */,
 				7B09CB95246504CD00DFE73E /* DefaultAxisValueFormatter.swift in Sources */,
 				7B09CBB3246504CD00DFE73E /* ZoomViewJob.swift in Sources */,
 				7B09CB79246504CD00DFE73E /* LineScatterCandleRadarRenderer.swift in Sources */,
