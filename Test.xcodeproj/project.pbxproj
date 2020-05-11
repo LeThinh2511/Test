@@ -136,6 +136,7 @@
 		7B09CBF324650A1200DFE73E /* DemoBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B09CBF224650A1200DFE73E /* DemoBaseViewController.swift */; };
 		7B09CBF524650A9400DFE73E /* BalloonMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B09CBF424650A9400DFE73E /* BalloonMarker.swift */; };
 		7B09CBFB24650EC500DFE73E /* LineChartViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B09CBF924650EC500DFE73E /* LineChartViewController.xib */; };
+		7B7E1C7324690A790023CDBB /* CoreGraphicsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7E1C7224690A790023CDBB /* CoreGraphicsViewController.swift */; };
 		7BCA236223C6DFCD00F829B4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCA236123C6DFCD00F829B4 /* AppDelegate.swift */; };
 		7BCA236423C6DFCD00F829B4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCA236323C6DFCD00F829B4 /* SceneDelegate.swift */; };
 		7BCA236623C6DFCD00F829B4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCA236523C6DFCD00F829B4 /* ViewController.swift */; };
@@ -295,6 +296,7 @@
 		7B09CBF224650A1200DFE73E /* DemoBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoBaseViewController.swift; sourceTree = "<group>"; };
 		7B09CBF424650A9400DFE73E /* BalloonMarker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalloonMarker.swift; sourceTree = "<group>"; };
 		7B09CBF924650EC500DFE73E /* LineChartViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LineChartViewController.xib; sourceTree = "<group>"; };
+		7B7E1C7224690A790023CDBB /* CoreGraphicsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreGraphicsViewController.swift; sourceTree = "<group>"; };
 		7BCA235E23C6DFCD00F829B4 /* Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Test.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7BCA236123C6DFCD00F829B4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7BCA236323C6DFCD00F829B4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -618,6 +620,41 @@
 			path = ChartTest;
 			sourceTree = "<group>";
 		};
+		7B7E1C6E246907420023CDBB /* Core Graphics */ = {
+			isa = PBXGroup;
+			children = (
+				7B7E1C7224690A790023CDBB /* CoreGraphicsViewController.swift */,
+			);
+			path = "Core Graphics";
+			sourceTree = "<group>";
+		};
+		7B7E1C6F246907620023CDBB /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				7BCAB7ED2463A78400D87B67 /* UIViewExtension.swift */,
+				7BCAB7EF2463F57000D87B67 /* UIColorExtension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		7B7E1C70246907710023CDBB /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				7BCA236A23C6DFCE00F829B4 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		7B7E1C71246907890023CDBB /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				7BCA236523C6DFCD00F829B4 /* ViewController.swift */,
+				7BCA236723C6DFCD00F829B4 /* Main.storyboard */,
+				7BCA236C23C6DFCE00F829B4 /* LaunchScreen.storyboard */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
 		7BCA235523C6DFCC00F829B4 = {
 			isa = PBXGroup;
 			children = (
@@ -643,16 +680,14 @@
 		7BCA236023C6DFCD00F829B4 /* Test */ = {
 			isa = PBXGroup;
 			children = (
+				7BCA236F23C6DFCE00F829B4 /* Info.plist */,
 				7BCA236123C6DFCD00F829B4 /* AppDelegate.swift */,
 				7BCA236323C6DFCD00F829B4 /* SceneDelegate.swift */,
-				7BCA236523C6DFCD00F829B4 /* ViewController.swift */,
-				7BCA236723C6DFCD00F829B4 /* Main.storyboard */,
-				7BCA236A23C6DFCE00F829B4 /* Assets.xcassets */,
-				7BCA236C23C6DFCE00F829B4 /* LaunchScreen.storyboard */,
-				7BCA236F23C6DFCE00F829B4 /* Info.plist */,
-				7BCAB7ED2463A78400D87B67 /* UIViewExtension.swift */,
-				7BCAB7EF2463F57000D87B67 /* UIColorExtension.swift */,
+				7B7E1C71246907890023CDBB /* Main */,
 				7B09CBFC2465174300DFE73E /* ChartTest */,
+				7B7E1C6E246907420023CDBB /* Core Graphics */,
+				7B7E1C6F246907620023CDBB /* Extensions */,
+				7B7E1C70246907710023CDBB /* Resources */,
 			);
 			path = Test;
 			sourceTree = "<group>";
@@ -974,6 +1009,7 @@
 				7B09CBD6246504CD00DFE73E /* IRadarChartDataSet.swift in Sources */,
 				7B09CB96246504CD00DFE73E /* IndexAxisValueFormatter.swift in Sources */,
 				7B09CBCB246504CD00DFE73E /* PieChartData.swift in Sources */,
+				7B7E1C7324690A790023CDBB /* CoreGraphicsViewController.swift in Sources */,
 				7B09CBAA246504CD00DFE73E /* YAxis.swift in Sources */,
 				7B09CBAC246504CD00DFE73E /* XAxis.swift in Sources */,
 				7B09CBE5246504CD00DFE73E /* BubbleChartDataProvider.swift in Sources */,

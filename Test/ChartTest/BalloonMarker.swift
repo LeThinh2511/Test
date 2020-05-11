@@ -86,10 +86,7 @@ open class BalloonMarker: MarkerImage
     open override func draw(context: CGContext, point: CGPoint)
     {
         guard let label = label else { return }
-        
-        let offset = self.offsetForDrawing(atPoint: point)
         let size = self.size
-//        print("point: \(point) - offset: \(offset) - size: \(size)")
         let origin = CGPoint(x: point.x, y: 100)
         var rect = CGRect(origin: origin, size: size)
         rect.origin.x -= size.width / 2.0
