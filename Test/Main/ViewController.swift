@@ -10,9 +10,12 @@ import UIKit
 
 class ViewController: UIViewController {
     @IBOutlet weak var gradientView: UIView!
+    @IBOutlet weak var htmlLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let string = "<i>This <b>text</b> is italic</i>"
+        htmlLabel.attributedText = string.htmlToAttributedString
         let secondColor = UIColor.hex("45FFF7")
         let firstColor = UIColor.hex("B93BA9")
         let gradients: [Gradient] = [(firstColor, 0), (secondColor, 1)]

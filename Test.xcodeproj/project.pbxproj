@@ -136,6 +136,7 @@
 		7B09CBF324650A1200DFE73E /* DemoBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B09CBF224650A1200DFE73E /* DemoBaseViewController.swift */; };
 		7B09CBF524650A9400DFE73E /* BalloonMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B09CBF424650A9400DFE73E /* BalloonMarker.swift */; };
 		7B09CBFB24650EC500DFE73E /* LineChartViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B09CBF924650EC500DFE73E /* LineChartViewController.xib */; };
+		7B18585E246A6566006C6A67 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B18585D246A6566006C6A67 /* StringExtension.swift */; };
 		7B7E1C7324690A790023CDBB /* CoreGraphicsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7E1C7224690A790023CDBB /* CoreGraphicsViewController.swift */; };
 		7B7E1C7524690EE70023CDBB /* PushButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7E1C7424690EE70023CDBB /* PushButton.swift */; };
 		7B7E1C77246933F90023CDBB /* CounterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7E1C76246933F90023CDBB /* CounterView.swift */; };
@@ -299,6 +300,7 @@
 		7B09CBF224650A1200DFE73E /* DemoBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoBaseViewController.swift; sourceTree = "<group>"; };
 		7B09CBF424650A9400DFE73E /* BalloonMarker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalloonMarker.swift; sourceTree = "<group>"; };
 		7B09CBF924650EC500DFE73E /* LineChartViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LineChartViewController.xib; sourceTree = "<group>"; };
+		7B18585D246A6566006C6A67 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		7B7E1C7224690A790023CDBB /* CoreGraphicsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreGraphicsViewController.swift; sourceTree = "<group>"; };
 		7B7E1C7424690EE70023CDBB /* PushButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushButton.swift; sourceTree = "<group>"; };
 		7B7E1C76246933F90023CDBB /* CounterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterView.swift; sourceTree = "<group>"; };
@@ -639,6 +641,7 @@
 			children = (
 				7BCAB7ED2463A78400D87B67 /* UIViewExtension.swift */,
 				7BCAB7EF2463F57000D87B67 /* UIColorExtension.swift */,
+				7B18585D246A6566006C6A67 /* StringExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -976,6 +979,7 @@
 				7B09CBE4246504CD00DFE73E /* ScatterChartDataProvider.swift in Sources */,
 				7B09CB93246504CD00DFE73E /* DefaultFillFormatter.swift in Sources */,
 				7B09CBB2246504CD00DFE73E /* MoveViewJob.swift in Sources */,
+				7B18585E246A6566006C6A67 /* StringExtension.swift in Sources */,
 				7B09CB78246504CD00DFE73E /* Renderer.swift in Sources */,
 				7B09CBC8246504CD00DFE73E /* ChartDataSet.swift in Sources */,
 				7B09CB6D246504CD00DFE73E /* ChevronDownShapeRenderer.swift in Sources */,

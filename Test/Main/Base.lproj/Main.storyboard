@@ -63,8 +63,14 @@
                                             <segue destination="uwL-4I-wkl" kind="show" id="CKA-er-kKY"/>
                                         </connections>
                                     </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="52C-AR-nWh">
+                                        <rect key="frame" x="0.0" y="336" width="390" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nb2-v7-Ba6">
-                                        <rect key="frame" x="0.0" y="336" width="390" height="360"/>
+                                        <rect key="frame" x="0.0" y="368.5" width="390" height="327.5"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                     </view>
                                 </subviews>
@@ -87,6 +93,7 @@
                     <navigationItem key="navigationItem" title="Home" id="uaX-5F-8QS"/>
                     <connections>
                         <outlet property="gradientView" destination="6Or-L5-HIy" id="1mN-zc-bL6"/>
+                        <outlet property="htmlLabel" destination="52C-AR-nWh" id="QTs-Di-xYi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
