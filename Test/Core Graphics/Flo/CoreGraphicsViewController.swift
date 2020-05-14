@@ -13,12 +13,22 @@ class CoreGraphicsViewController: UIViewController {
     @IBOutlet weak var counterLabel: UILabel!
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var graphView: GraphView!
+    @IBOutlet weak var medalView: MedalView!
     
     var isGraphViewShowing = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         counterLabel.text = String(counterView.counter)
+        checkTotal()
+    }
+    
+    func checkTotal() {
+      if counterView.counter >= 8 {
+        medalView.showMedal(show: true)
+      } else {
+        medalView.showMedal(show: false)
+      }
     }
     
     @IBAction func pushButtonPressed(_ button: PushButton) {
@@ -33,6 +43,7 @@ class CoreGraphicsViewController: UIViewController {
         if isGraphViewShowing {
             counterViewTap(nil)
         }
+        checkTotal()
     }
     
     @IBAction func counterViewTap(_ gesture: UITapGestureRecognizer?) {
