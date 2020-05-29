@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 extension String {
     var htmlToAttributedString: NSAttributedString? {
@@ -16,6 +17,10 @@ extension String {
         } catch {
             return NSAttributedString()
         }
+    }
+    
+    func sizeOf(_ font: UIFont) -> CGSize {
+        return self.size(withAttributes: [NSAttributedString.Key.font: font])
     }
     
     var htmlToString: String {
