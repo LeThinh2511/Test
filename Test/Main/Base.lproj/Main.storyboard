@@ -63,14 +63,33 @@
                                             <segue destination="uwL-4I-wkl" kind="show" id="CKA-er-kKY"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jNS-jN-S19">
+                                        <rect key="frame" x="0.0" y="336" width="390" height="50"/>
+                                        <color key="backgroundColor" red="1" green="0.12549019610000001" blue="0.12549019610000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="j0W-53-TZ8"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <state key="normal" title="Core Graphics">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <segue destination="Hbc-UT-VHL" kind="show" id="2am-g2-bNw"/>
+                                        </connections>
+                                    </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="52C-AR-nWh">
-                                        <rect key="frame" x="0.0" y="336" width="390" height="20.5"/>
+                                        <rect key="frame" x="0.0" y="398" width="390" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nb2-v7-Ba6">
-                                        <rect key="frame" x="0.0" y="368.5" width="390" height="415.5"/>
+                                        <rect key="frame" x="0.0" y="430.5" width="390" height="353.5"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                     </view>
                                 </subviews>
@@ -100,7 +119,7 @@
             </objects>
             <point key="canvasLocation" x="1042.0289855072465" y="138.61607142857142"/>
         </scene>
-        <!--Core Graphics-->
+        <!--Core Graphics 1-->
         <scene sceneID="apS-dC-gww">
             <objects>
                 <viewController id="uwL-4I-wkl" customClass="CoreGraphicsViewController" customModule="Test" customModuleProvider="target" sceneMemberID="viewController">
@@ -251,7 +270,7 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </view>
-                    <navigationItem key="navigationItem" title="Core Graphics" id="xuM-dy-bTO"/>
+                    <navigationItem key="navigationItem" title="Core Graphics 1" id="xuM-dy-bTO"/>
                     <connections>
                         <outlet property="containerView" destination="fcg-Up-2xG" id="Z2L-Fo-167"/>
                         <outlet property="counterLabel" destination="8NP-Jg-QgZ" id="suC-wu-GUw"/>
@@ -267,7 +286,71 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1840.5797101449277" y="138.61607142857142"/>
+            <point key="canvasLocation" x="1806" y="-345"/>
+        </scene>
+        <!--Core Graphics 2-->
+        <scene sceneID="5ik-W9-9ex">
+            <objects>
+                <viewController id="Hbc-UT-VHL" customClass="CircleProgressViewController" customModule="Test" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="r0C-xC-3vo">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="fYq-UI-Hta">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="774"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lKW-KD-wHa" customClass="CircleProgressView" customModule="Test" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="200"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="200" id="XcV-C2-x8y"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="maxValue">
+                                                <real key="value" value="100"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="value">
+                                                <real key="value" value="0.0"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                    <view contentMode="scaleToFill" verticalHuggingPriority="249" verticalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="ZbT-Zy-FiA">
+                                        <rect key="frame" x="0.0" y="200" width="414" height="524"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E5u-2H-mPJ">
+                                        <rect key="frame" x="0.0" y="724" width="414" height="50"/>
+                                        <color key="backgroundColor" red="0.054901960780000002" green="0.1137254902" blue="0.42745098040000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="GCe-GO-Iqg"/>
+                                        </constraints>
+                                        <state key="normal" title="Add">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="didTapAddButton:" destination="Hbc-UT-VHL" eventType="touchUpInside" id="2bg-MN-X6o"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="JmG-75-SkY" firstAttribute="trailing" secondItem="fYq-UI-Hta" secondAttribute="trailing" id="4s8-S9-4u6"/>
+                            <constraint firstItem="fYq-UI-Hta" firstAttribute="leading" secondItem="JmG-75-SkY" secondAttribute="leading" id="6q0-n4-rZc"/>
+                            <constraint firstItem="fYq-UI-Hta" firstAttribute="top" secondItem="JmG-75-SkY" secondAttribute="top" id="ZJc-ds-kLc"/>
+                            <constraint firstItem="JmG-75-SkY" firstAttribute="bottom" secondItem="fYq-UI-Hta" secondAttribute="bottom" id="oJm-V5-9sO"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="JmG-75-SkY"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Core Graphics 2" id="eAs-wi-1jA"/>
+                    <connections>
+                        <outlet property="progressView" destination="lKW-KD-wHa" id="Nh0-4n-Vkm"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="irr-06-EcZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1829" y="429"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="MJO-1B-f7C">

@@ -140,6 +140,7 @@
 		7B09CBF524650A9400DFE73E /* BalloonMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B09CBF424650A9400DFE73E /* BalloonMarker.swift */; };
 		7B09CBFB24650EC500DFE73E /* LineChartViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B09CBF924650EC500DFE73E /* LineChartViewController.xib */; };
 		7B18585E246A6566006C6A67 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B18585D246A6566006C6A67 /* StringExtension.swift */; };
+		7B507991248753B80069119E /* CircleProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B507990248753B80069119E /* CircleProgressView.swift */; };
 		7B5CB6E42480C0C50039E577 /* OBDMeterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B5CB6E32480C0C50039E577 /* OBDMeterView.swift */; };
 		7B7E1C7324690A790023CDBB /* CoreGraphicsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7E1C7224690A790023CDBB /* CoreGraphicsViewController.swift */; };
 		7B7E1C7524690EE70023CDBB /* PushButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7E1C7424690EE70023CDBB /* PushButton.swift */; };
@@ -155,6 +156,7 @@
 		7BCA238423C6DFCE00F829B4 /* TestUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCA238323C6DFCE00F829B4 /* TestUITests.swift */; };
 		7BCAB7EE2463A78400D87B67 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCAB7ED2463A78400D87B67 /* UIViewExtension.swift */; };
 		7BCAB7F02463F57000D87B67 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCAB7EF2463F57000D87B67 /* UIColorExtension.swift */; };
+		7BE369F62487B35800AFF47A /* CircleProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE369F52487B35800AFF47A /* CircleProgressViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -308,6 +310,7 @@
 		7B09CBF424650A9400DFE73E /* BalloonMarker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalloonMarker.swift; sourceTree = "<group>"; };
 		7B09CBF924650EC500DFE73E /* LineChartViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LineChartViewController.xib; sourceTree = "<group>"; };
 		7B18585D246A6566006C6A67 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
+		7B507990248753B80069119E /* CircleProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleProgressView.swift; sourceTree = "<group>"; };
 		7B5CB6E32480C0C50039E577 /* OBDMeterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OBDMeterView.swift; sourceTree = "<group>"; };
 		7B7E1C7224690A790023CDBB /* CoreGraphicsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreGraphicsViewController.swift; sourceTree = "<group>"; };
 		7B7E1C7424690EE70023CDBB /* PushButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushButton.swift; sourceTree = "<group>"; };
@@ -329,6 +332,7 @@
 		7BCA238523C6DFCE00F829B4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7BCAB7ED2463A78400D87B67 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UI\U0010View\U0010Extension.swift"; sourceTree = "<group>"; };
 		7BCAB7EF2463F57000D87B67 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
+		7BE369F52487B35800AFF47A /* CircleProgressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleProgressViewController.swift; sourceTree = "<group>"; };
 		7CFFA31D83800C67A29092D8 /* Pods-Test.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Test.release.xcconfig"; path = "Target Support Files/Pods-Test/Pods-Test.release.xcconfig"; sourceTree = "<group>"; };
 		C1EDA999FEBF12763BD2EFEE /* Pods-TestTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestTests.debug.xcconfig"; path = "Target Support Files/Pods-TestTests/Pods-TestTests.debug.xcconfig"; sourceTree = "<group>"; };
 		C2DEFCC9F0465ECE4964994A /* Pods_Test_TestUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Test_TestUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -648,6 +652,8 @@
 			isa = PBXGroup;
 			children = (
 				7B5CB6E32480C0C50039E577 /* OBDMeterView.swift */,
+				7B507990248753B80069119E /* CircleProgressView.swift */,
+				7BE369F52487B35800AFF47A /* CircleProgressViewController.swift */,
 			);
 			path = SSpeed;
 			sourceTree = "<group>";
@@ -1039,7 +1045,9 @@
 				32DCC17D246C3E9C00810E02 /* BackgroundView.swift in Sources */,
 				7B09CBB6246504CD00DFE73E /* ChartData.swift in Sources */,
 				7B09CBD3246504CD00DFE73E /* IPieChartDataSet.swift in Sources */,
+				7BE369F62487B35800AFF47A /* CircleProgressViewController.swift in Sources */,
 				7B09CB9D246504CD00DFE73E /* Platform+Gestures.swift in Sources */,
+				7B507991248753B80069119E /* CircleProgressView.swift in Sources */,
 				7B09CBBF246504CD00DFE73E /* RadarChartData.swift in Sources */,
 				7B09CB91246504CD00DFE73E /* Animator.swift in Sources */,
 				7B09CBB0246504CD00DFE73E /* AnimatedZoomViewJob.swift in Sources */,
