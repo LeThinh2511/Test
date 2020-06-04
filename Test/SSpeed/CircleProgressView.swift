@@ -10,18 +10,18 @@ import UIKit
 
 @IBDesignable
 class CircleProgressView: UIView {
-    @IBInspectable var maxValue: Double = 360
+    @IBInspectable var maxValue: Double = 0
     @IBInspectable var fillColor: UIColor = .red
-    @IBInspectable var shadowColour: UIColor = .red
+    @IBInspectable var shadowColour: UIColor = .black
     @IBInspectable var shadowSize: CGFloat = 5
     @IBInspectable var resultSize: CGFloat = 50
     @IBInspectable var resultLineWidth: CGFloat = 5
-    @IBInspectable var resultColor: UIColor = .white
+    @IBInspectable var resultColor: UIColor = .black
     
     @IBInspectable var valueFontSize: CGFloat = 30
-    @IBInspectable var valueColor: UIColor = .white
+    @IBInspectable var valueColor: UIColor = .black
     @IBInspectable var valueRounded: Bool = true
-    @IBInspectable var value: Double = 180 {
+    @IBInspectable var value: Double = 0 {
         didSet {
             setNeedsDisplay()
         }
@@ -38,16 +38,25 @@ class CircleProgressView: UIView {
     
     var isFailed = false {
         didSet {
+            self.oldValue = 0
+            value = 0
             setNeedsDisplay()
         }
     }
     
+    private var radius: CGFloat = 0
+    private var oldValue: Double = 0
+    private var currentPoint: CGPoint = .zero
+    
     private var lineLayer = CAShapeLayer()
     private var circleLayer = CAShapeLayer()
-    private let startAngle = CGFloat(-0.5 * Double.pi)
-    private var endAngle: CGFloat {
-        return CGFloat(2 * Double.pi) + startAngle
+    
+    private let startRadians = CGFloat(-0.5 * Double.pi)
+    private var endRadians: CGFloat {
+        return CGFloat(2 * Double.pi) + startRadians
     }
+    
+    private let animationDuration: Double = 1
     
     override func draw(_ rect: CGRect) {
         guard let context = UIGraphicsGetCurrentContext() else { return }
@@ -57,16 +66,15 @@ class CircleProgressView: UIView {
 //        let frame = CGRect(x: x, y: y, width: size, height: size)
         
         let offset = max(circleRadius * 2, upperLineWidth, lowerLineWidth) / 2
-        let radius = size / 2 - shadowSize - offset
+        radius = size / 2 - shadowSize - offset
 //        let outerRadius = radius + offset / 2
 //        let innerRadius = radius - offset / 2
-        let center = CGPoint(x: rect.width / 2, y: rect.height / 2)
         
         context.setShadow(offset: .zero, blur: shadowSize, color: shadowColour.cgColor)
         context.beginTransparencyLayer(auxiliaryInfo: nil)
         
         // Fill
-        let fillPath = UIBezierPath(arcCenter: center, radius: radius, startAngle: startAngle, endAngle: endAngle, clockwise: true)
+        let fillPath = UIBezierPath(arcCenter: center, radius: radius, startAngle: startRadians, endAngle: endRadians, clockwise: true)
         fillColor.setFill()
         fillPath.fill()
         
@@ -77,42 +85,10 @@ class CircleProgressView: UIView {
         lowerPath.stroke()
         
         // Upper line
-        let animation: CABasicAnimation = CABasicAnimation(keyPath: "strokeEnd")
-        animation.fromValue = 0
-        animation.toValue = 1
-        animation.duration = 2
-        animation.timingFunction = CAMediaTimingFunction(name: .linear)
-        animation.fillMode = .forwards
-        
-        var upperEndAngle: CGFloat = 0
-        if maxValue != 0 {
-            upperEndAngle = startAngle + CGFloat(value / maxValue * (2 * Double.pi))
-        }
-        let upperPath = UIBezierPath(arcCenter: center, radius: radius, startAngle: startAngle, endAngle: upperEndAngle, clockwise: true)
-        lineLayer.path = upperPath.cgPath
-        lineLayer.strokeColor = upperColor.cgColor
-        lineLayer.fillColor = UIColor.clear.cgColor
-        lineLayer.lineWidth = upperLineWidth
-        lineLayer.lineCap = .round
-        layer.addSublayer(lineLayer)
-        lineLayer.add(animation, forKey: "line")
+        animateLine()
         
         // Circle
-        let canimation = CABasicAnimation(keyPath: "transform.rotation")
-        canimation.fromValue = -CGFloat(value / maxValue * (2 * Double.pi))
-        canimation.toValue = 0
-        canimation.timingFunction = CAMediaTimingFunction(name: .linear)
-        canimation.duration = 2
-        canimation.isAdditive = false
-        let currentPoint = upperPath.currentPoint
-        let circlePoint = CGPoint(x: currentPoint.x - center.x, y: currentPoint.y - center.y)
-        let circlePath = UIBezierPath(arcCenter: circlePoint, radius: circleRadius, startAngle: 0, endAngle: 2 * CGFloat.pi, clockwise: true)
-        circleLayer = CAShapeLayer()
-        circleLayer.path = circlePath.cgPath
-        circleLayer.fillColor = circleColor.cgColor
-        circleLayer.position = center
-        layer.addSublayer(circleLayer)
-        circleLayer.add(canimation, forKey: nil)
+        animateCircle()
         
         // Result
         if isFailed {
@@ -122,7 +98,6 @@ class CircleProgressView: UIView {
             resultColor.setStroke()
             failPath.stroke()
         } else if value < maxValue {
-            // Value
             let valueFont: UIFont = .systemFont(ofSize: valueFontSize)
             let valueTitle = valueRounded ? "\(Int(value))" : "\(value)"
             let valueTitleSize = valueTitle.sizeOf(valueFont)
@@ -145,6 +120,62 @@ class CircleProgressView: UIView {
         }
         
         context.endTransparencyLayer()
+        oldValue = value
+    }
+    
+    private var oldRadians: CGFloat {
+        if maxValue <= 0 { return 0 }
+        return startRadians + CGFloat(oldValue / maxValue * (2 * Double.pi))
+    }
+    
+    private var currentRadians: CGFloat {
+        if maxValue <= 0 { return 0 }
+        return startRadians + CGFloat(value / maxValue * (2 * Double.pi))
+    }
+    
+    private var lineFromValue: CGFloat {
+        if value <= 0 { return 0 }
+        return CGFloat(oldValue / value)
+    }
+    
+    private var circleFromValue: CGFloat {
+        return oldRadians - currentRadians
+    }
+    
+    private func animateLine() {
+        let animation: CABasicAnimation = CABasicAnimation(keyPath: "strokeEnd")
+        animation.fromValue = lineFromValue
+        animation.toValue = 1
+        animation.duration = animationDuration
+        animation.timingFunction = CAMediaTimingFunction(name: .linear)
+        animation.fillMode = .forwards
+        animation.delegate = self
+        let upperPath = UIBezierPath(arcCenter: center, radius: radius, startAngle: startRadians, endAngle: currentRadians, clockwise: true)
+        currentPoint = upperPath.currentPoint
+        lineLayer.path = upperPath.cgPath
+        lineLayer.strokeColor = upperColor.cgColor
+        lineLayer.fillColor = UIColor.clear.cgColor
+        lineLayer.lineWidth = upperLineWidth
+        lineLayer.lineCap = .round
+        layer.addSublayer(lineLayer)
+        lineLayer.add(animation, forKey: "line")
+    }
+    
+    private func animateCircle() {
+        let animation = CABasicAnimation(keyPath: "transform.rotation")
+        animation.fromValue = circleFromValue
+        animation.toValue = 0
+        animation.timingFunction = CAMediaTimingFunction(name: .linear)
+        animation.duration = animationDuration
+        animation.isAdditive = false
+        animation.delegate = self
+        let circlePoint = CGPoint(x: currentPoint.x - center.x, y: currentPoint.y - center.y)
+        let circlePath = UIBezierPath(arcCenter: circlePoint, radius: circleRadius, startAngle: 0, endAngle: 2 * CGFloat.pi, clockwise: true)
+        circleLayer.path = circlePath.cgPath
+        circleLayer.fillColor = circleColor.cgColor
+        circleLayer.position = center
+        layer.addSublayer(circleLayer)
+        circleLayer.add(animation, forKey: nil)
     }
     
     // "X" Path
@@ -192,5 +223,10 @@ class CircleProgressView: UIView {
         transform = transform.rotated(by: radians)
         transform = transform.translatedBy(x: -center.x, y: -center.y)
         path.apply(transform)
+    }
+}
+
+extension CircleProgressView: CAAnimationDelegate {
+    func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
     }
 }
