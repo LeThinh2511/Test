@@ -58,6 +58,16 @@ class CircleProgressView: UIView {
     
     private let animationDuration: Double = 1
     
+    override class var layerClass: AnyClass {
+        return CALayer.self
+    }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        clearsContextBeforeDrawing = false
+        isOpaque = true
+    }
+    
     override func draw(_ rect: CGRect) {
         guard let context = UIGraphicsGetCurrentContext() else { return }
         let size = min(rect.width, rect.height)
