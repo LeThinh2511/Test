@@ -140,6 +140,7 @@
 		7B09CBF524650A9400DFE73E /* BalloonMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B09CBF424650A9400DFE73E /* BalloonMarker.swift */; };
 		7B09CBFB24650EC500DFE73E /* LineChartViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B09CBF924650EC500DFE73E /* LineChartViewController.xib */; };
 		7B18585E246A6566006C6A67 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B18585D246A6566006C6A67 /* StringExtension.swift */; };
+		7B4EA2492490CDAE004A04E9 /* CoreAnimationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B4EA2482490CDAE004A04E9 /* CoreAnimationViewController.swift */; };
 		7B507991248753B80069119E /* CircleProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B507990248753B80069119E /* CircleProgressView.swift */; };
 		7B5CB6E42480C0C50039E577 /* OBDMeterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B5CB6E32480C0C50039E577 /* OBDMeterView.swift */; };
 		7B7E1C7324690A790023CDBB /* CoreGraphicsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7E1C7224690A790023CDBB /* CoreGraphicsViewController.swift */; };
@@ -310,6 +311,7 @@
 		7B09CBF424650A9400DFE73E /* BalloonMarker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalloonMarker.swift; sourceTree = "<group>"; };
 		7B09CBF924650EC500DFE73E /* LineChartViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LineChartViewController.xib; sourceTree = "<group>"; };
 		7B18585D246A6566006C6A67 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
+		7B4EA2482490CDAE004A04E9 /* CoreAnimationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreAnimationViewController.swift; sourceTree = "<group>"; };
 		7B507990248753B80069119E /* CircleProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleProgressView.swift; sourceTree = "<group>"; };
 		7B5CB6E32480C0C50039E577 /* OBDMeterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OBDMeterView.swift; sourceTree = "<group>"; };
 		7B7E1C7224690A790023CDBB /* CoreGraphicsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreGraphicsViewController.swift; sourceTree = "<group>"; };
@@ -373,6 +375,7 @@
 			isa = PBXGroup;
 			children = (
 				3296DD81246FC81900CEDF3A /* TableOfContent.swift */,
+				7B4EA2482490CDAE004A04E9 /* CoreAnimationViewController.swift */,
 			);
 			path = "Core Animation";
 			sourceTree = "<group>";
@@ -1063,6 +1066,7 @@
 				7B09CBF1246509D600DFE73E /* LineChartViewController.swift in Sources */,
 				7B09CBE3246504CD00DFE73E /* BarLineScatterCandleBubbleChartDataProvider.swift in Sources */,
 				7B09CB81246504CD00DFE73E /* ChartHighlighter.swift in Sources */,
+				7B4EA2492490CDAE004A04E9 /* CoreAnimationViewController.swift in Sources */,
 				7B09CBC0246504CD00DFE73E /* CandleChartDataSet.swift in Sources */,
 				7BCA236223C6DFCD00F829B4 /* AppDelegate.swift in Sources */,
 				7B09CBA2246504CD00DFE73E /* TransformerHorizontalBarChart.swift in Sources */,

@@ -11,7 +11,7 @@ import UIKit
 @IBDesignable
 class CircleProgressView: UIView {
     @IBInspectable var maxValue: Double = 0
-    @IBInspectable var fillColor: UIColor = .red
+    @IBInspectable var fillColor: UIColor = .white
     @IBInspectable var shadowColour: UIColor = .black
     @IBInspectable var shadowSize: CGFloat = 5
     @IBInspectable var resultSize: CGFloat = 50
@@ -168,7 +168,7 @@ class CircleProgressView: UIView {
         lineLayer.lineWidth = upperLineWidth
         lineLayer.lineCap = .round
         layer.addSublayer(lineLayer)
-        lineLayer.add(animation, forKey: "line")
+        lineLayer.add(animation, forKey: "strokeEnd")
     }
     
     private func animateCircle() {
