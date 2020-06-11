@@ -10,6 +10,12 @@ import UIKit
 
 @IBDesignable
 class CircleProgressView: UIView {
+    private enum Direction {
+        case none
+        case backward
+        case forward
+    }
+    
     @IBInspectable var maxValue: Double = 0
     @IBInspectable var fillColor: UIColor = .white
     @IBInspectable var shadowColour: UIColor = .black
@@ -20,26 +26,22 @@ class CircleProgressView: UIView {
     
     @IBInspectable var valueFontSize: CGFloat = 30
     @IBInspectable var valueColor: UIColor = .black
-    @IBInspectable var valueRounded: Bool = true
-    @IBInspectable var value: Double = 0 {
-        didSet {
-            setNeedsDisplay()
-        }
-    }
+    @IBInspectable var valueRounded: Bool = false
+    @IBInspectable private(set) var currentValue: Double = 0
     
-    @IBInspectable var lowerLineWidth: CGFloat = 8
+    @IBInspectable var lowerCircleWidth: CGFloat = 8
     @IBInspectable var lowerColor: UIColor = .gray
     
-    @IBInspectable var upperLineWidth: CGFloat = 10
+    @IBInspectable var upperCircleWidth: CGFloat = 10
     @IBInspectable var upperColor: UIColor = .green
     
-    @IBInspectable var circleRadius: CGFloat = 8
-    @IBInspectable var circleColor: UIColor = .black
+    @IBInspectable var indicatorRadius: CGFloat = 8
+    @IBInspectable var indicatorColor: UIColor = .black
     
     var isFailed = false {
         didSet {
             self.oldValue = 0
-            value = 0
+            currentValue = 0
             setNeedsDisplay()
         }
     }
@@ -47,6 +49,7 @@ class CircleProgressView: UIView {
     private var radius: CGFloat = 0
     private var oldValue: Double = 0
     private var currentPoint: CGPoint = .zero
+    private var direction: Direction = .none
     
     private var lineLayer = CAShapeLayer()
     private var circleLayer = CAShapeLayer()
@@ -64,22 +67,35 @@ class CircleProgressView: UIView {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        clearsContextBeforeDrawing = false
-        isOpaque = true
+        setupInitialState()
+    }
+    
+    func updateValue(_ newValue: Double) {
+        let strokeEnd = lineLayer.presentation()?.strokeEnd ?? 1
+        switch direction {
+        case .none:
+            animateLine(fromValue: currentValue, toValue: newValue)
+            oldValue = currentValue
+        case .backward:
+            let presentationValue = Double(strokeEnd) * oldValue
+            let endRadians = radians(from: presentationValue)
+            let upperPath = UIBezierPath(arcCenter: center, radius: radius, startAngle: startRadians, endAngle: endRadians, clockwise: true)
+            lineLayer.path = upperPath.cgPath
+            animateLine(fromValue: presentationValue, toValue: newValue)
+            oldValue = presentationValue
+        case .forward:
+            let presentationValue = Double(strokeEnd) * currentValue
+            let endRadians = radians(from: presentationValue)
+            let upperPath = UIBezierPath(arcCenter: center, radius: radius, startAngle: startRadians, endAngle: endRadians, clockwise: true)
+            lineLayer.path = upperPath.cgPath
+            animateLine(fromValue: presentationValue, toValue: newValue)
+            oldValue = presentationValue
+        }
+        currentValue = newValue
     }
     
     override func draw(_ rect: CGRect) {
         guard let context = UIGraphicsGetCurrentContext() else { return }
-        let size = min(rect.width, rect.height)
-//        let x = (rect.width - size) / 2
-//        let y = (rect.height - size) / 2
-//        let frame = CGRect(x: x, y: y, width: size, height: size)
-        
-        let offset = max(circleRadius * 2, upperLineWidth, lowerLineWidth) / 2
-        radius = size / 2 - shadowSize - offset
-//        let outerRadius = radius + offset / 2
-//        let innerRadius = radius - offset / 2
-        
         context.setShadow(offset: .zero, blur: shadowSize, color: shadowColour.cgColor)
         context.beginTransparencyLayer(auxiliaryInfo: nil)
         
@@ -91,14 +107,8 @@ class CircleProgressView: UIView {
         // Lower line
         let lowerPath = fillPath.copy() as! UIBezierPath
         lowerColor.setStroke()
-        lowerPath.lineWidth = lowerLineWidth
+        lowerPath.lineWidth = lowerCircleWidth
         lowerPath.stroke()
-        
-        // Upper line
-        animateLine()
-        
-        // Circle
-        animateCircle()
         
         // Result
         if isFailed {
@@ -107,9 +117,9 @@ class CircleProgressView: UIView {
             failPath.lineWidth = resultLineWidth
             resultColor.setStroke()
             failPath.stroke()
-        } else if value < maxValue {
+        } else if currentValue < maxValue {
             let valueFont: UIFont = .systemFont(ofSize: valueFontSize)
-            let valueTitle = valueRounded ? "\(Int(value))" : "\(value)"
+            let valueTitle = valueRounded ? "\(Int(currentValue))" : "\(currentValue)"
             let valueTitleSize = valueTitle.sizeOf(valueFont)
             let valueTitleY = center.y - valueTitleSize.height / 2
             let valueTitleX = center.x - valueTitleSize.width / 2
@@ -130,44 +140,33 @@ class CircleProgressView: UIView {
         }
         
         context.endTransparencyLayer()
-        oldValue = value
-    }
-    
-    private var oldRadians: CGFloat {
-        if maxValue <= 0 { return 0 }
-        return startRadians + CGFloat(oldValue / maxValue * (2 * Double.pi))
-    }
-    
-    private var currentRadians: CGFloat {
-        if maxValue <= 0 { return 0 }
-        return startRadians + CGFloat(value / maxValue * (2 * Double.pi))
-    }
-    
-    private var lineFromValue: CGFloat {
-        if value <= 0 { return 0 }
-        return CGFloat(oldValue / value)
+        oldValue = currentValue
     }
     
     private var circleFromValue: CGFloat {
-        return oldRadians - currentRadians
+        return 0 //oldRadians - currentRadians
     }
     
-    private func animateLine() {
-        let animation: CABasicAnimation = CABasicAnimation(keyPath: "strokeEnd")
-        animation.fromValue = lineFromValue
-        animation.toValue = 1
+    private func animateLine(fromValue: Double, toValue: Double) {
+        guard fromValue != toValue else { return }
+        let animation = CABasicAnimation(keyPath: "strokeEnd")
+        if toValue >= fromValue && toValue != 0 {
+            animation.fillMode = .forwards
+            animation.fromValue = CGFloat(fromValue / toValue)
+            animation.toValue = 1
+            direction = .forward
+            let endRadians = radians(from: toValue)
+            let upperPath = UIBezierPath(arcCenter: center, radius: radius, startAngle: startRadians, endAngle: endRadians, clockwise: true)
+            lineLayer.path = upperPath.cgPath
+        } else if toValue < fromValue && fromValue != 0 {
+            animation.fillMode = .backwards
+            animation.fromValue = 1
+            animation.toValue = CGFloat(toValue / fromValue)
+            direction = .backward
+        }
         animation.duration = animationDuration
         animation.timingFunction = CAMediaTimingFunction(name: .linear)
-        animation.fillMode = .forwards
         animation.delegate = self
-        let upperPath = UIBezierPath(arcCenter: center, radius: radius, startAngle: startRadians, endAngle: currentRadians, clockwise: true)
-        currentPoint = upperPath.currentPoint
-        lineLayer.path = upperPath.cgPath
-        lineLayer.strokeColor = upperColor.cgColor
-        lineLayer.fillColor = UIColor.clear.cgColor
-        lineLayer.lineWidth = upperLineWidth
-        lineLayer.lineCap = .round
-        layer.addSublayer(lineLayer)
         lineLayer.add(animation, forKey: "strokeEnd")
     }
     
@@ -180,9 +179,9 @@ class CircleProgressView: UIView {
         animation.isAdditive = false
         animation.delegate = self
         let circlePoint = CGPoint(x: currentPoint.x - center.x, y: currentPoint.y - center.y)
-        let circlePath = UIBezierPath(arcCenter: circlePoint, radius: circleRadius, startAngle: 0, endAngle: 2 * CGFloat.pi, clockwise: true)
+        let circlePath = UIBezierPath(arcCenter: circlePoint, radius: indicatorRadius, startAngle: 0, endAngle: 2 * CGFloat.pi, clockwise: true)
         circleLayer.path = circlePath.cgPath
-        circleLayer.fillColor = circleColor.cgColor
+        circleLayer.fillColor = indicatorColor.cgColor
         circleLayer.position = center
         layer.addSublayer(circleLayer)
         circleLayer.add(animation, forKey: nil)
@@ -223,6 +222,22 @@ class CircleProgressView: UIView {
         return successPath
     }
     
+    private func setupInitialState() {
+        clearsContextBeforeDrawing = false
+        isOpaque = true
+        
+        let size = min(bounds.width, bounds.height)
+        let offset = max(indicatorRadius * 2, upperCircleWidth, lowerCircleWidth) / 2
+        radius = size / 2 - shadowSize - offset
+        
+        lineLayer.strokeColor = upperColor.cgColor
+        lineLayer.fillColor = UIColor.clear.cgColor
+        lineLayer.lineWidth = upperCircleWidth
+        lineLayer.lineCap = .round
+        layer.addSublayer(lineLayer)
+    }
+    
+    // MARK: Helper
     private func rotate(path: UIBezierPath, degree: CGFloat) {
         let bounds: CGRect = path.cgPath.boundingBox
         let center = CGPoint(x: bounds.midX, y: bounds.midY)
@@ -234,9 +249,19 @@ class CircleProgressView: UIView {
         transform = transform.translatedBy(x: -center.x, y: -center.y)
         path.apply(transform)
     }
+    
+    func radians(from value: Double) -> CGFloat {
+        startRadians + CGFloat(value / maxValue * (2 * Double.pi))
+    }
 }
 
 extension CircleProgressView: CAAnimationDelegate {
     func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
+        if flag {
+            let endRadians = radians(from: currentValue)
+            let upperPath = UIBezierPath(arcCenter: center, radius: radius, startAngle: startRadians, endAngle: endRadians, clockwise: true)
+            lineLayer.path = upperPath.cgPath
+            direction = .none
+        }
     }
 }

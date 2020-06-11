@@ -20,8 +20,17 @@ class CircleProgressViewController: UIViewController {
     }
     
     @IBAction func didTapAddButton(_ sender: Any) {
-        timer?.invalidate()
-        progressView.isFailed = true
+//        timer?.invalidate()
+//        progressView.isFailed = true
+        let random = Int.random(in: -50..<50)
+        progress += Double(random)
+        if progress > 100 {
+            progress = 100
+        }
+        if progress < 0 {
+            progress = 0
+        }
+        progressView.updateValue(progress)
     }
     
     @objc func setProgress() {
@@ -29,6 +38,6 @@ class CircleProgressViewController: UIViewController {
             timer?.invalidate()
         }
         progress += 10
-        progressView.value = progress
+        progressView.updateValue(progress)
     }
 }

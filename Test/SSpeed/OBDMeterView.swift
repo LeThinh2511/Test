@@ -48,7 +48,7 @@ class OBDMeterView: UIView {
         
         let radius = (circleSize - upperLineWidth) / 2 - lineShadowRadius
         let outerRadius = radius + upperLineWidth / 2
-//        let innerRadius = radius - upperLineWidth / 2
+//        let innerRadius = radius - upperCircleWidth / 2
         let center = CGPoint(x: circleX + circleSize / 2, y: outerRadius + lineShadowRadius)
         
         // Lower Line
