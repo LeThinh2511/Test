@@ -9,15 +9,19 @@
 import Foundation
 import UIKit
 
-class CircleProgressViewController: UIViewController, CircleProgressViewDelegate {
+class CircleProgressViewController: UIViewController, CircleProgressViewDelegate, OBDMeterViewDelegate {
     @IBOutlet weak var progressView: CircleProgressView!
-    var progress: Double = 0
-    var timer: Timer?
+    @IBOutlet weak var speedMeterView: OBDMeterView!
+    @IBOutlet weak var speedLabel: UILabel!
     @IBOutlet weak var valueLabel: UILabel!
+    var progress: Double = 0
+    var speed: Double = 0
+    var timer: Timer?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         progressView.delegate = self
+        speedMeterView.delegate = self
 //        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(setProgress), userInfo: nil, repeats: true)
     }
     
@@ -33,6 +37,16 @@ class CircleProgressViewController: UIViewController, CircleProgressViewDelegate
             progress = 0
         }
         progressView.updateValue(progress)
+        
+        let randomSpeed = Int.random(in: -50..<50)
+        speed += Double(randomSpeed)
+        if speed > 360 {
+            speed = 360
+        }
+        if speed < 50 {
+            speed = 50
+        }
+        speedMeterView.updateValue(speed)
     }
     
     @objc func setProgress() {
@@ -45,5 +59,9 @@ class CircleProgressViewController: UIViewController, CircleProgressViewDelegate
     
     func circleProgressView(view: CircleProgressView, didUpdate value: Double) {
         valueLabel.text = "\(Int(ceil(value)))"
+    }
+    
+    func meterView(_ view: OBDMeterView, changedValue value: Double) {
+        speedLabel.text = "\(Int(ceil(value)))"
     }
 }
