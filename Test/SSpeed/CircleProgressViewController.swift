@@ -9,13 +9,15 @@
 import Foundation
 import UIKit
 
-class CircleProgressViewController: UIViewController {
+class CircleProgressViewController: UIViewController, CircleProgressViewDelegate {
     @IBOutlet weak var progressView: CircleProgressView!
     var progress: Double = 0
     var timer: Timer?
+    @IBOutlet weak var valueLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        progressView.delegate = self
 //        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(setProgress), userInfo: nil, repeats: true)
     }
     
@@ -39,5 +41,9 @@ class CircleProgressViewController: UIViewController {
         }
         progress += 10
         progressView.updateValue(progress)
+    }
+    
+    func circleProgressView(view: CircleProgressView, didUpdate value: Double) {
+        valueLabel.text = "\(Int(ceil(value)))"
     }
 }
