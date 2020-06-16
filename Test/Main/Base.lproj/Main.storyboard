@@ -449,11 +449,21 @@
                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="valueRounded" value="YES"/>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HcK-37-7eQ" customClass="SpeedMeterView" customModule="Test" customModuleProvider="target">
+                                                <rect key="frame" x="107" y="232" width="200" height="200"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="HcK-37-7eQ" secondAttribute="height" id="ekJ-Zj-4uE"/>
+                                                    <constraint firstAttribute="width" constant="200" id="xRp-9u-Zso"/>
+                                                </constraints>
+                                            </view>
                                         </subviews>
                                         <color key="backgroundColor" red="0.054901960780000002" green="0.1137254902" blue="0.42745098040000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstItem="c8K-9g-z4o" firstAttribute="top" secondItem="ZbT-Zy-FiA" secondAttribute="top" constant="20" id="6YT-eD-4gj"/>
+                                            <constraint firstItem="HcK-37-7eQ" firstAttribute="centerX" secondItem="ZbT-Zy-FiA" secondAttribute="centerX" id="Ejz-nN-w8v"/>
                                             <constraint firstItem="c8K-9g-z4o" firstAttribute="centerX" secondItem="ZbT-Zy-FiA" secondAttribute="centerX" id="TnL-cR-R1k"/>
+                                            <constraint firstItem="HcK-37-7eQ" firstAttribute="top" secondItem="c8K-9g-z4o" secondAttribute="bottom" constant="12" id="bxd-Sf-Cc9"/>
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E5u-2H-mPJ">

@@ -147,6 +147,7 @@
 		7B7E1C7524690EE70023CDBB /* PushButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7E1C7424690EE70023CDBB /* PushButton.swift */; };
 		7B7E1C77246933F90023CDBB /* CounterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7E1C76246933F90023CDBB /* CounterView.swift */; };
 		7B7E1C7A24694C710023CDBB /* GraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7E1C7924694C710023CDBB /* GraphView.swift */; };
+		7BB59C592498B2860021A118 /* SpeedMeterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB59C582498B2860021A118 /* SpeedMeterView.swift */; };
 		7BB60A832497839D000C50FA /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB60A822497839D000C50FA /* ChartView.swift */; };
 		7BCA236223C6DFCD00F829B4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCA236123C6DFCD00F829B4 /* AppDelegate.swift */; };
 		7BCA236623C6DFCD00F829B4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCA236523C6DFCD00F829B4 /* ViewController.swift */; };
@@ -318,6 +319,7 @@
 		7B7E1C7424690EE70023CDBB /* PushButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushButton.swift; sourceTree = "<group>"; };
 		7B7E1C76246933F90023CDBB /* CounterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterView.swift; sourceTree = "<group>"; };
 		7B7E1C7924694C710023CDBB /* GraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphView.swift; sourceTree = "<group>"; };
+		7BB59C582498B2860021A118 /* SpeedMeterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedMeterView.swift; sourceTree = "<group>"; };
 		7BB60A822497839D000C50FA /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
 		7BCA235E23C6DFCD00F829B4 /* Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Test.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7BCA236123C6DFCD00F829B4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -376,6 +378,7 @@
 			children = (
 				3296DD81246FC81900CEDF3A /* TableOfContent.swift */,
 				7B4EA2482490CDAE004A04E9 /* CoreAnimationViewController.swift */,
+				7BB59C582498B2860021A118 /* SpeedMeterView.swift */,
 			);
 			path = "Core Animation";
 			sourceTree = "<group>";
@@ -1076,6 +1079,7 @@
 				7B09CBC4246504CD00DFE73E /* ChartDataEntryBase.swift in Sources */,
 				7B09CBD6246504CD00DFE73E /* IRadarChartDataSet.swift in Sources */,
 				7B09CB96246504CD00DFE73E /* IndexAxisValueFormatter.swift in Sources */,
+				7BB59C592498B2860021A118 /* SpeedMeterView.swift in Sources */,
 				7B09CBCB246504CD00DFE73E /* PieChartData.swift in Sources */,
 				7B7E1C7324690A790023CDBB /* CoreGraphicsViewController.swift in Sources */,
 				7B09CBAA246504CD00DFE73E /* YAxis.swift in Sources */,
