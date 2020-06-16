@@ -47,7 +47,6 @@ class OBDMeterView: UIView {
     
     private var valueLabel: UILabel!
     private var radius: CGFloat = 0
-    private var oldValue: Double = 0
     private var direction: Direction = .none
     private var firstLoad = true
     
@@ -80,15 +79,9 @@ class OBDMeterView: UIView {
         switch direction {
         case .none:
             animateUpperCircle(fromValue: currentValue, toValue: newValue)
-            oldValue = currentValue
         case .backward, .forward:
-            let currentMaxValue = direction == .backward ? oldValue : currentValue
-            let presentationValue = Double(strokeEnd) * currentMaxValue
-            let endRadians = radians(from: presentationValue, offset: startRadians)
-            let upperPath = UIBezierPath(arcCenter: centerPoint, radius: radius, startAngle: startRadians, endAngle: endRadians, clockwise: true)
-            upperCircleLayer.path = upperPath.cgPath
-            animateUpperCircle(fromValue: presentationValue, toValue: newValue)
-            oldValue = presentationValue
+            let currentValue = Double(strokeEnd) * maxValue
+            animateUpperCircle(fromValue: currentValue, toValue: newValue)
         }
         resumeReporter()
         currentValue = newValue
@@ -120,25 +113,16 @@ class OBDMeterView: UIView {
     
     // Animating upper circle from an value to another value
     private func animateUpperCircle(fromValue: Double, toValue: Double) {
-        guard fromValue != toValue else { return }
+        guard fromValue != toValue, maxValue > 0 else { return }
         let animation = CABasicAnimation(keyPath: "strokeEnd")
-        if toValue >= fromValue && toValue != 0 {
-            animation.fillMode = .forwards
-            animation.fromValue = CGFloat(fromValue / toValue)
-            animation.toValue = 1
-            direction = .forward
-            let endRadians = radians(from: toValue, offset: startRadians)
-            let upperPath = UIBezierPath(arcCenter: centerPoint, radius: radius, startAngle: startRadians, endAngle: endRadians, clockwise: true)
-            upperCircleLayer.path = upperPath.cgPath
-        } else if toValue < fromValue && fromValue != 0 {
-            animation.fillMode = .backwards
-            animation.fromValue = 1
-            animation.toValue = CGFloat(toValue / fromValue)
-            direction = .backward
-        }
+        animation.fromValue = CGFloat(fromValue / maxValue)
+        animation.toValue = CGFloat(toValue / maxValue)
         animation.duration = animationDuration
         animation.timingFunction = CAMediaTimingFunction(name: animationStyle)
+        animation.fillMode = .forwards
+        animation.isRemovedOnCompletion = false
         animation.delegate = self
+        direction = toValue >= fromValue ? .forward : .backward
         upperCircleLayer.add(animation, forKey: "strokeEnd")
     }
     
@@ -150,8 +134,8 @@ class OBDMeterView: UIView {
         let offset = max(upperLineWidth, lowerLineWidth) / 2
         radius = size / 2 - radiusShadow - offset
         
-        let endRadians = radians(from: currentValue)
         let upperPath = UIBezierPath(arcCenter: centerPoint, radius: radius, startAngle: startRadians, endAngle: endRadians, clockwise: true)
+        upperCircleLayer.strokeEnd = CGFloat(currentValue / maxValue)
         upperCircleLayer.path = upperPath.cgPath
         upperCircleLayer.strokeColor = upperColor.cgColor
         upperCircleLayer.fillColor = UIColor.clear.cgColor
@@ -215,11 +199,8 @@ class OBDMeterView: UIView {
                 return
             }
             switch self.direction {
-            case .backward:
-                let value = Double(strokeEnd) * self.oldValue
-                self.changeValue(newValue: value)
-            case .forward:
-                let value = Double(strokeEnd) * self.currentValue
+            case .backward, .forward:
+                let value = Double(strokeEnd) * self.maxValue
                 self.changeValue(newValue: value)
             case .none: break
             }
@@ -230,9 +211,6 @@ class OBDMeterView: UIView {
 extension OBDMeterView: CAAnimationDelegate {
     func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
         if flag {
-            let endRadians = radians(from: currentValue, offset: startRadians)
-            let upperPath = UIBezierPath(arcCenter: centerPoint, radius: radius, startAngle: startRadians, endAngle: endRadians, clockwise: true)
-            upperCircleLayer.path = upperPath.cgPath
             direction = .none
             changeValue(newValue: currentValue)
             timer?.invalidate()
