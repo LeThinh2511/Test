@@ -122,11 +122,6 @@
                             <constraint firstItem="m07-Hm-LRM" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="slh-1b-Z4s"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                <real key="value" value="10"/>
-                            </userDefinedRuntimeAttribute>
-                        </userDefinedRuntimeAttributes>
                     </view>
                     <navigationItem key="navigationItem" title="Home" id="uaX-5F-8QS"/>
                     <connections>
@@ -193,7 +188,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VAV-Go-GqS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1786.9565217391305" y="503.57142857142856"/>
+            <point key="canvasLocation" x="1825" y="500"/>
         </scene>
         <!--Core Graphics 1-->
         <scene sceneID="apS-dC-gww">
@@ -308,28 +303,13 @@
                                     <outletCollection property="gestureRecognizers" destination="4bn-sB-t8B" appends="YES" id="XyU-LJ-XrF"/>
                                 </connections>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RMk-78-i5H" customClass="OBDMeterView" customModule="Test" customModuleProvider="target">
-                                <rect key="frame" x="107" y="554" width="200" height="200"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="200" id="At1-Hm-aBa"/>
-                                    <constraint firstAttribute="height" constant="200" id="Rgi-p8-foQ"/>
-                                </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
-                                        <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="fcg-Up-2xG" firstAttribute="centerX" secondItem="gMP-bn-HAk" secondAttribute="centerX" id="5iR-CU-hh5"/>
                             <constraint firstItem="ZQw-Xr-pae" firstAttribute="top" secondItem="9RO-LC-BOZ" secondAttribute="bottom" constant="12" id="6yU-Jm-tYc"/>
-                            <constraint firstItem="RMk-78-i5H" firstAttribute="centerX" secondItem="gMP-bn-HAk" secondAttribute="centerX" id="Hey-w4-xRJ"/>
                             <constraint firstItem="9RO-LC-BOZ" firstAttribute="top" secondItem="fcg-Up-2xG" secondAttribute="bottom" constant="40" id="g7d-Zo-c6S"/>
                             <constraint firstItem="9RO-LC-BOZ" firstAttribute="centerX" secondItem="gMP-bn-HAk" secondAttribute="centerX" id="qJD-BB-ZfD"/>
-                            <constraint firstItem="kJP-8f-tS7" firstAttribute="bottom" secondItem="RMk-78-i5H" secondAttribute="bottom" constant="20" id="xFl-i1-IMu"/>
                             <constraint firstItem="fcg-Up-2xG" firstAttribute="top" secondItem="kJP-8f-tS7" secondAttribute="top" constant="20" id="xMN-vX-qDW"/>
                             <constraint firstItem="ZQw-Xr-pae" firstAttribute="centerX" secondItem="gMP-bn-HAk" secondAttribute="centerX" id="zap-Ov-iBr"/>
                         </constraints>
