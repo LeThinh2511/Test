@@ -149,7 +149,6 @@
 		7B7E1C7A24694C710023CDBB /* GraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7E1C7924694C710023CDBB /* GraphView.swift */; };
 		7BB60A832497839D000C50FA /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB60A822497839D000C50FA /* ChartView.swift */; };
 		7BCA236223C6DFCD00F829B4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCA236123C6DFCD00F829B4 /* AppDelegate.swift */; };
-		7BCA236423C6DFCD00F829B4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCA236323C6DFCD00F829B4 /* SceneDelegate.swift */; };
 		7BCA236623C6DFCD00F829B4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCA236523C6DFCD00F829B4 /* ViewController.swift */; };
 		7BCA236923C6DFCD00F829B4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7BCA236723C6DFCD00F829B4 /* Main.storyboard */; };
 		7BCA236B23C6DFCE00F829B4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7BCA236A23C6DFCE00F829B4 /* Assets.xcassets */; };
@@ -322,7 +321,6 @@
 		7BB60A822497839D000C50FA /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
 		7BCA235E23C6DFCD00F829B4 /* Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Test.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7BCA236123C6DFCD00F829B4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		7BCA236323C6DFCD00F829B4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		7BCA236523C6DFCD00F829B4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		7BCA236823C6DFCD00F829B4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7BCA236A23C6DFCE00F829B4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -740,7 +738,6 @@
 			children = (
 				7BCA236F23C6DFCE00F829B4 /* Info.plist */,
 				7BCA236123C6DFCD00F829B4 /* AppDelegate.swift */,
-				7BCA236323C6DFCD00F829B4 /* SceneDelegate.swift */,
 				7B5CB6E22480BC3C0039E577 /* SSpeed */,
 				7B7E1C71246907890023CDBB /* Main */,
 				7B09CBFC2465174300DFE73E /* ChartTest */,
@@ -1127,7 +1124,6 @@
 				7B09CBB9246504CD00DFE73E /* RadarChartDataEntry.swift in Sources */,
 				7B09CBE1246504CD00DFE73E /* CombinedChartDataProvider.swift in Sources */,
 				7B09CB8A246504CD00DFE73E /* ChartViewBase.swift in Sources */,
-				7BCA236423C6DFCD00F829B4 /* SceneDelegate.swift in Sources */,
 				7B09CBAB246504CD00DFE73E /* AxisBase.swift in Sources */,
 				7B09CBDF246504CD00DFE73E /* ChartDataProvider.swift in Sources */,
 			);
@@ -1304,8 +1300,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Z2S78UX6KB;
 				INFOPLIST_FILE = Test/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1323,8 +1320,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Z2S78UX6KB;
 				INFOPLIST_FILE = Test/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

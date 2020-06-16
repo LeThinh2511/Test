@@ -37,7 +37,7 @@ class CircleProgressViewController: UIViewController, CircleProgressViewDelegate
         }
         progressView.updateValue(progress)
         
-        let randomSpeed = Int.random(in: -50..<50)
+        let randomSpeed = Int.random(in: -100..<100)
         speed += Double(randomSpeed)
         if speed > 360 {
             speed = 360
