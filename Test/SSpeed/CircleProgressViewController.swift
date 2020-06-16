@@ -12,7 +12,6 @@ import UIKit
 class CircleProgressViewController: UIViewController, CircleProgressViewDelegate, OBDMeterViewDelegate {
     @IBOutlet weak var progressView: CircleProgressView!
     @IBOutlet weak var speedMeterView: OBDMeterView!
-    @IBOutlet weak var speedLabel: UILabel!
     @IBOutlet weak var valueLabel: UILabel!
     var progress: Double = 0
     var speed: Double = 0
@@ -62,6 +61,5 @@ class CircleProgressViewController: UIViewController, CircleProgressViewDelegate
     }
     
     func meterView(_ view: OBDMeterView, changedValue value: Double) {
-        speedLabel.text = "\(Int(ceil(value)))"
     }
 }

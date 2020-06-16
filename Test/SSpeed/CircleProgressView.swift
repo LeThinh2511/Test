@@ -68,6 +68,7 @@ class CircleProgressView: UIView {
     var animationDuration: Double = 1
     var animationStyle: CAMediaTimingFunctionName = .linear
     private var timer: Timer?
+    private var firstLoad = true
     
     weak var delegate: CircleProgressViewDelegate?
     
@@ -75,9 +76,12 @@ class CircleProgressView: UIView {
         return CALayer.self
     }
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        setupInitialState()
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        if firstLoad {
+            setupInitialState()
+            firstLoad = false
+        }
     }
     
     func updateValue(_ newValue: Double) {

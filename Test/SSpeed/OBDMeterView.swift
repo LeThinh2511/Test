@@ -13,7 +13,6 @@ protocol OBDMeterViewDelegate: class {
     func meterView(_ view: OBDMeterView, changedValue value: Double)
 }
 
-@IBDesignable
 class OBDMeterView: UIView {
     private enum Direction {
         case none
@@ -28,6 +27,14 @@ class OBDMeterView: UIView {
     @IBInspectable var nameFontSize: CGFloat = 17
     @IBInspectable var nameColor: UIColor = .red
     
+    @IBInspectable var valueFontSize: CGFloat = 30
+    @IBInspectable var valueColor: UIColor = .white
+    @IBInspectable var valueRounded: Bool = false
+    
+    @IBInspectable var unit: String = ""
+    @IBInspectable var unitFontSize: CGFloat = 14
+    @IBInspectable var unitColor: UIColor = .white
+    
     @IBInspectable var lowerLineWidth: CGFloat = 8
     @IBInspectable var lowerColor: UIColor = .gray
     
@@ -38,9 +45,11 @@ class OBDMeterView: UIView {
     @IBInspectable var radiusShadow: CGFloat = 0
     @IBInspectable var offsetShadow: CGSize = .zero
     
+    private var valueLabel: UILabel!
     private var radius: CGFloat = 0
     private var oldValue: Double = 0
     private var direction: Direction = .none
+    private var firstLoad = true
     
     private var upperCircleLayer = CAShapeLayer()
     
@@ -57,9 +66,12 @@ class OBDMeterView: UIView {
     
     weak var delegate: OBDMeterViewDelegate?
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        setupInitialState()
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        if firstLoad {
+            setupInitialState()
+            firstLoad = false
+        }
     }
     
     func updateValue(_ newValue: Double) {
@@ -150,6 +162,33 @@ class OBDMeterView: UIView {
         upperCircleLayer.shadowRadius = radiusShadow
         upperCircleLayer.shadowOpacity = 1
         layer.addSublayer(upperCircleLayer)
+        
+        valueLabel = UILabel()
+        valueLabel.text = "\(Int(currentValue))"
+        valueLabel.textAlignment = .center
+        valueLabel.font = .systemFont(ofSize: valueFontSize)
+        valueLabel.textColor = valueColor
+        let roundedValue = Double(round(10 * currentValue) / 10)
+        if valueRounded {
+            valueLabel.text = "\(Int(roundedValue))"
+        } else {
+            valueLabel.text = "\(roundedValue)"
+        }
+        
+        let unitLabel = UILabel()
+        unitLabel.text = unit
+        unitLabel.textAlignment = .center
+        unitLabel.font = .systemFont(ofSize: unitFontSize)
+        unitLabel.textColor = unitColor
+        
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.addArrangedSubview(valueLabel)
+        stackView.addArrangedSubview(unitLabel)
+        addSubview(stackView)
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        stackView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
     }
     
     // MARK: Helper
@@ -160,6 +199,16 @@ class OBDMeterView: UIView {
         return startRadians + CGFloat(value / maxValue) * (2 * .pi - bottomRadians)
     }
     
+    private func changeValue(newValue: Double) {
+        delegate?.meterView(self, changedValue: newValue)
+        let roundedValue = Double(round(10 * newValue) / 10)
+        if valueRounded {
+            valueLabel.text = "\(Int(roundedValue))"
+        } else {
+            valueLabel.text = "\(roundedValue)"
+        }
+    }
+    
     private func resumeReporter() {
         timer = Timer.scheduledTimer(withTimeInterval: 0.05, repeats: true, block: { [weak self] timer in
             guard let `self` = self, let strokeEnd = self.upperCircleLayer.presentation()?.strokeEnd else {
@@ -168,10 +217,10 @@ class OBDMeterView: UIView {
             switch self.direction {
             case .backward:
                 let value = Double(strokeEnd) * self.oldValue
-                self.delegate?.meterView(self, changedValue: value)
+                self.changeValue(newValue: value)
             case .forward:
                 let value = Double(strokeEnd) * self.currentValue
-                self.delegate?.meterView(self, changedValue: value)
+                self.changeValue(newValue: value)
             case .none: break
             }
         })
@@ -185,7 +234,7 @@ extension OBDMeterView: CAAnimationDelegate {
             let upperPath = UIBezierPath(arcCenter: centerPoint, radius: radius, startAngle: startRadians, endAngle: endRadians, clockwise: true)
             upperCircleLayer.path = upperPath.cgPath
             direction = .none
-            delegate?.meterView(self, changedValue: currentValue)
+            changeValue(newValue: currentValue)
             timer?.invalidate()
         }
     }

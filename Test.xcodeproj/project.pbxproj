@@ -147,6 +147,7 @@
 		7B7E1C7524690EE70023CDBB /* PushButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7E1C7424690EE70023CDBB /* PushButton.swift */; };
 		7B7E1C77246933F90023CDBB /* CounterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7E1C76246933F90023CDBB /* CounterView.swift */; };
 		7B7E1C7A24694C710023CDBB /* GraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7E1C7924694C710023CDBB /* GraphView.swift */; };
+		7BB60A832497839D000C50FA /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB60A822497839D000C50FA /* ChartView.swift */; };
 		7BCA236223C6DFCD00F829B4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCA236123C6DFCD00F829B4 /* AppDelegate.swift */; };
 		7BCA236423C6DFCD00F829B4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCA236323C6DFCD00F829B4 /* SceneDelegate.swift */; };
 		7BCA236623C6DFCD00F829B4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCA236523C6DFCD00F829B4 /* ViewController.swift */; };
@@ -318,6 +319,7 @@
 		7B7E1C7424690EE70023CDBB /* PushButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushButton.swift; sourceTree = "<group>"; };
 		7B7E1C76246933F90023CDBB /* CounterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterView.swift; sourceTree = "<group>"; };
 		7B7E1C7924694C710023CDBB /* GraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphView.swift; sourceTree = "<group>"; };
+		7BB60A822497839D000C50FA /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
 		7BCA235E23C6DFCD00F829B4 /* Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Test.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7BCA236123C6DFCD00F829B4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7BCA236323C6DFCD00F829B4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -657,6 +659,7 @@
 				7B5CB6E32480C0C50039E577 /* OBDMeterView.swift */,
 				7B507990248753B80069119E /* CircleProgressView.swift */,
 				7BE369F52487B35800AFF47A /* CircleProgressViewController.swift */,
+				7BB60A822497839D000C50FA /* ChartView.swift */,
 			);
 			path = SSpeed;
 			sourceTree = "<group>";
@@ -1024,6 +1027,7 @@
 				7B09CB6D246504CD00DFE73E /* ChevronDownShapeRenderer.swift in Sources */,
 				7B7E1C7524690EE70023CDBB /* PushButton.swift in Sources */,
 				7B09CB73246504CD00DFE73E /* XAxisRendererHorizontalBarChart.swift in Sources */,
+				7BB60A832497839D000C50FA /* ChartView.swift in Sources */,
 				7B09CBAD246504CD00DFE73E /* ChartLimitLine.swift in Sources */,
 				7B09CBBE246504CD00DFE73E /* LineChartData.swift in Sources */,
 				3296DD82246FC81900CEDF3A /* TableOfContent.swift in Sources */,
