@@ -60,10 +60,8 @@ class CircleProgressView: UIView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        if firstLoad {
-            setupInitialState()
-            firstLoad = false
-        }
+        setupInitialState()
+        setNeedsDisplay()
     }
     
     func updateValue(_ newValue: Double) {

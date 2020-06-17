@@ -12,6 +12,7 @@ import UIKit
 class CircleProgressViewController: UIViewController, CircleProgressViewDelegate, OBDMeterViewDelegate {
     @IBOutlet weak var progressView: CircleProgressView!
     @IBOutlet weak var speedMeterView: OBDMeterView!
+    @IBOutlet weak var speedView: SpeedMeterView!
     @IBOutlet weak var valueLabel: UILabel!
     var progress: Double = 0
     var speed: Double = 0
@@ -37,15 +38,16 @@ class CircleProgressViewController: UIViewController, CircleProgressViewDelegate
         }
         progressView.updateValue(progress)
         
-        let randomSpeed = Int.random(in: -100..<100)
+        let randomSpeed = Int.random(in: -50..<50)
         speed += Double(randomSpeed)
-        if speed > 360 {
-            speed = 360
+        if speed > 180 {
+            speed = 180
         }
-        if speed < 50 {
-            speed = 50
+        if speed < 0 {
+            speed = 0
         }
         speedMeterView.updateValue(speed)
+        speedView.updateValue(CGFloat(speed))
     }
     
     @objc func setProgress() {

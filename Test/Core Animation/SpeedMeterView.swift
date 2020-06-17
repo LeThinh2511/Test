@@ -15,21 +15,21 @@ class SpeedMeterView: UIView {
         case forward
     }
     
-    @IBInspectable var maxValue: Double = 180
-    @IBInspectable private(set) var currentValue: Double = 180
+    @IBInspectable var maxValue: CGFloat = 180
+    @IBInspectable private(set) var currentValue: CGFloat = 0
     
     @IBInspectable var smallStepValue: CGFloat = 5
-    @IBInspectable var smallSeparatorHeight: CGFloat = 8
-    @IBInspectable var smallSeparatorWidth: CGFloat = 4
-    @IBInspectable var smallSeparatorColor: UIColor = .white
+    @IBInspectable var heightSmallSeparator: CGFloat = 8
+    @IBInspectable var widthSmallSeparator: CGFloat = 4
+    @IBInspectable var colorSmallSeparator: UIColor = .white
     
     @IBInspectable var bigStepValue: CGFloat = 20
-    @IBInspectable var bigSeparatorHeight: CGFloat = 17
-    @IBInspectable var bigSeparatorWidth: CGFloat = 4
-    @IBInspectable var bigSeparatorColor: UIColor = .red
+    @IBInspectable var heightBigSeparator: CGFloat = 17
+    @IBInspectable var widthBigSeparator: CGFloat = 4
+    @IBInspectable var colorBigSeparator: UIColor = .red
     
-    @IBInspectable var stepValueFontSize: CGFloat = 20
-    @IBInspectable var stepValueColor: UIColor = .white
+    @IBInspectable var valueFontSize: CGFloat = 14
+    @IBInspectable var valueColor: UIColor = .white
     
     @IBInspectable var indicatorHeight: CGFloat = 70
     @IBInspectable var indicatorWidth: CGFloat = 30
@@ -43,6 +43,10 @@ class SpeedMeterView: UIView {
     private var firstLoad = true
     
     private var indicatorLayer = CAShapeLayer()
+    private var currentValueLabel = UILabel()
+    
+    private var valueRectSize = CGSize(width: 50, height: 30)
+    private var valueRectOffset: CGFloat = 40
     
     private var timer: Timer?
     private let bottomRadians: CGFloat = 0.5 * .pi
@@ -56,70 +60,59 @@ class SpeedMeterView: UIView {
         return size / 2
     }
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        setupInitialState()
+    var animationDuration: Double = 1
+    var animationStyle: CAMediaTimingFunctionName = .linear
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        if firstLoad {
+            setupInitialState()
+            firstLoad = false
+        }
+    }
+    
+    var valuePerRadians: CGFloat {
+        return maxValue / (2 * .pi - bottomRadians)
     }
     
     override func draw(_ rect: CGRect) {
         guard let context = UIGraphicsGetCurrentContext() else { return }
-        var currentRadians = startRadians
-        let valuePerRadians = CGFloat(maxValue) / (2 * .pi - bottomRadians)
-        // Big step
-        context.saveGState()
-        let bigStepRadians = bigStepValue / valuePerRadians
-        let bigSeparatorFrame = CGRect(x: -bigSeparatorWidth / 2, y: -bigSeparatorHeight / 2, width: bigSeparatorWidth, height: bigSeparatorHeight)
-        let bigSeparatorPath = UIBezierPath(rect: bigSeparatorFrame)
-        bigSeparatorColor.setFill()
-        context.translateBy(x: bounds.midX, y: bounds.midY)
-        while currentRadians <= endRadians + pow(10, -10) {
-            context.saveGState()
-            context.rotate(by: -0.5 * .pi)
-            context.rotate(by: currentRadians)
-            context.translateBy(x: 0, y: radius - bigSeparatorHeight / 2)
-            bigSeparatorPath.fill()
-            currentRadians += bigStepRadians
-            context.restoreGState()
+        drawBigSeparator(in: context)
+        drawSmallSeparator(in: context)
+        let currentValueOrigin = CGPoint(x: centerPoint.x - valueRectSize.width / 2, y: centerPoint.y + valueRectOffset)
+        let currentValueRect = CGRect(origin: currentValueOrigin, size: valueRectSize)
+        let currentValuePath = UIBezierPath(rect: currentValueRect)
+        valueColor.setStroke()
+        currentValuePath.lineWidth = 1
+        currentValuePath.stroke()
+    }
+    
+    func updateValue(_ newValue: CGFloat) {
+        guard newValue >= 0 else { return }
+        switch direction {
+        case .none:
+            animateIndicator(fromRadians: radians(from: currentValue), toRadians: radians(from: newValue))
+        case .backward, .forward:
+            let rotatedValue = indicatorLayer.presentation()?.value(forKeyPath: "transform.rotation.z") as? CGFloat ?? 0
+            animateIndicator(fromRadians: rotatedValue, toRadians: radians(from: newValue))
         }
-        context.restoreGState()
-        
-        // Small step
-        currentRadians = startRadians
-        context.saveGState()
-        let smallStepRadians = smallStepValue / valuePerRadians
-        let smallSeparatorFrame = CGRect(x: -smallSeparatorWidth / 2, y: -smallSeparatorHeight / 2, width: smallSeparatorWidth, height: smallSeparatorHeight)
-        let smallSeparatorPath = UIBezierPath(rect: smallSeparatorFrame)
-        smallSeparatorColor.setFill()
-        context.translateBy(x: bounds.midX, y: bounds.midY)
-        while currentRadians <= endRadians + pow(10, -10) {
-            context.saveGState()
-            context.rotate(by: -0.5 * .pi)
-            context.rotate(by: currentRadians)
-            context.translateBy(x: 0, y: radius - smallSeparatorHeight / 2)
-            smallSeparatorPath.fill()
-            currentRadians += smallStepRadians
-            context.restoreGState()
-        }
-        context.restoreGState()
-        
-        // Indicator
-        let indicatorPath = UIBezierPath()
-        let firstPoint = CGPoint(x: centerPoint.x - indicatorWidth / 2, y: centerPoint.y)
-        let secondPoint = CGPoint(x: centerPoint.x, y: (centerPoint.y - indicatorHeight * (1 - indicatorRate)))
-        let thirdPoint = CGPoint(x: centerPoint.x + indicatorWidth / 2, y: centerPoint.y)
-        let fourthPoint = CGPoint(x: centerPoint.x, y: centerPoint.y + indicatorHeight * indicatorRate)
-        indicatorPath.move(to: firstPoint)
-        indicatorPath.addLine(to: secondPoint)
-        indicatorPath.addLine(to: thirdPoint)
-        indicatorPath.addLine(to: fourthPoint)
-        indicatorPath.close()
-        indicatorColor.setFill()
-        indicatorPath.fill()
-        
-        let centerPath = UIBezierPath(arcCenter: centerPoint, radius: centerRadius, startAngle: 0, endAngle: 2 * .pi, clockwise: true)
-        centerPath.lineWidth = centerRadius
-        centerColor.setFill()
-        centerPath.fill()
+        resumeReporter()
+        currentValue = newValue
+    }
+    
+    // Animating indicator from an angle to another angle
+    private func animateIndicator(fromRadians: CGFloat, toRadians: CGFloat) {
+        guard fromRadians != toRadians else { return }
+        direction = toRadians > fromRadians ? .forward : .backward
+        let animation = CABasicAnimation(keyPath: "transform.rotation.z")
+        animation.fromValue = fromRadians
+        animation.toValue = toRadians
+        animation.duration = animationDuration
+        animation.timingFunction = CAMediaTimingFunction(name: animationStyle)
+        animation.fillMode = .forwards
+        animation.delegate = self
+        animation.isRemovedOnCompletion = false
+        indicatorLayer.add(animation, forKey: "transform.rotation.z")
     }
     
     private func setupInitialState() {
@@ -127,8 +120,144 @@ class SpeedMeterView: UIView {
         isOpaque = true
         backgroundColor = .clear
         
-        let upperPath = UIBezierPath(arcCenter: centerPoint, radius: radius, startAngle: startRadians, endAngle: endRadians, clockwise: true)
-        indicatorLayer.strokeEnd = CGFloat(currentValue / maxValue)
-        indicatorLayer.path = upperPath.cgPath
+        // Indicator
+        let indicatorPath = UIBezierPath()
+        let firstPoint = CGPoint(x: -indicatorWidth / 2, y: 0)
+        let secondPoint = CGPoint(x: 0, y: (-indicatorHeight * (1 - indicatorRate)))
+        let thirdPoint = CGPoint(x: indicatorWidth / 2, y: 0)
+        let fourthPoint = CGPoint(x: 0, y: indicatorHeight * indicatorRate)
+        indicatorPath.move(to: firstPoint)
+        indicatorPath.addLine(to: secondPoint)
+        indicatorPath.addLine(to: thirdPoint)
+        indicatorPath.addLine(to: fourthPoint)
+        indicatorPath.close()
+        indicatorLayer.fillColor = indicatorColor.cgColor
+        indicatorLayer.path = indicatorPath.cgPath
+        layer.addSublayer(indicatorLayer)
+        indicatorLayer.position = centerPoint
+        indicatorLayer.transform = CATransform3DMakeRotation(1.5 * .pi - startRadians, 0, 0, -1)
+        
+        // Center Point
+        let centerPath = UIBezierPath(arcCenter: centerPoint, radius: centerRadius, startAngle: 0, endAngle: 2 * .pi, clockwise: true)
+        let centerLayer = CAShapeLayer()
+        centerLayer.path = centerPath.cgPath
+        centerLayer.fillColor = centerColor.cgColor
+        centerLayer.lineWidth = centerRadius
+        layer.addSublayer(centerLayer)
+        
+        // Current Value Label
+        currentValueLabel = UILabel(frame: .zero)
+        currentValueLabel.font = .systemFont(ofSize: valueFontSize)
+        currentValueLabel.textColor = valueColor
+        currentValueLabel.textAlignment = .center
+        currentValueLabel.text = "\(Int(currentValue))"
+        currentValueLabel.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(currentValueLabel)
+        NSLayoutConstraint.activate([
+            currentValueLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
+            currentValueLabel.heightAnchor.constraint(equalToConstant: valueRectSize.height),
+            currentValueLabel.widthAnchor.constraint(equalToConstant: valueRectSize.width),
+            currentValueLabel.topAnchor.constraint(equalTo: topAnchor, constant: centerPoint.y + valueRectOffset)
+        ])
+    }
+    
+    // MARK: Helper
+    private func radians(from value: CGFloat, offset: CGFloat = 0) -> CGFloat {
+        if maxValue == 0 {
+            return 0
+        }
+        let centerValue = maxValue / 2
+        return (value - centerValue) / valuePerRadians
+    }
+    
+    private func changeValue(newValue: CGFloat) {
+        let roundedValue = Double(round(10 * newValue) / 10)
+        currentValueLabel.text = "\(Int(roundedValue))"
+    }
+    
+    private func resumeReporter() {
+        timer = Timer.scheduledTimer(withTimeInterval: 0.05, repeats: true, block: { [weak self] timer in
+            guard let `self` = self, let rotatedValue = self.indicatorLayer.presentation()?.value(forKeyPath: "transform.rotation.z") as? CGFloat else {
+                return
+            }
+            switch self.direction {
+            case .backward, .forward:
+                let centerValue = (2 * .pi - self.bottomRadians) / 2
+                let value = (rotatedValue + centerValue) * self.valuePerRadians
+                self.changeValue(newValue: value)
+            case .none: break
+            }
+        })
+    }
+}
+
+extension SpeedMeterView: CAAnimationDelegate {
+    func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
+        if flag {
+            direction = .none
+            changeValue(newValue: currentValue)
+            timer?.invalidate()
+        }
+    }
+}
+
+extension SpeedMeterView {
+    func drawBigSeparator(in context: CGContext) {
+        var currentRadians = startRadians
+        context.saveGState()
+        let bigStepRadians = bigStepValue / valuePerRadians
+        let bigSeparatorFrame = CGRect(x: -widthBigSeparator / 2, y: -heightBigSeparator / 2, width: widthBigSeparator, height: heightBigSeparator)
+        let bigSeparatorPath = UIBezierPath(rect: bigSeparatorFrame)
+        colorBigSeparator.setFill()
+        context.translateBy(x: bounds.midX, y: bounds.midY)
+        var currentValue: CGFloat = 0
+        while currentRadians <= endRadians + pow(10, -10) {
+            // Separator
+            context.saveGState()
+            context.rotate(by: -0.5 * .pi)
+            context.rotate(by: currentRadians)
+            context.translateBy(x: 0, y: radius - heightBigSeparator / 2)
+            bigSeparatorPath.fill()
+            context.restoreGState()
+            
+            // Value Label
+            context.saveGState()
+            let valueLabel = "\(Int(currentValue))"
+            let valueFont: UIFont = .systemFont(ofSize: valueFontSize)
+            let valueLabelSize = valueLabel.sizeOf(valueFont)
+            let valueLabelOrigin = CGPoint(x: -valueLabelSize.width / 2, y: -valueLabelSize.height / 2)
+            let valueLabelFrame = CGRect(origin: valueLabelOrigin, size: valueLabelSize)
+            context.rotate(by: -0.5 * .pi)
+            context.rotate(by: currentRadians)
+            context.translateBy(x: 0, y: radius - heightBigSeparator / 2 - valueLabelSize.height)
+            context.rotate(by: .pi)
+            let valueAttributes = [NSAttributedString.Key.font: valueFont, NSAttributedString.Key.foregroundColor: valueColor]
+            (valueLabel as NSString).draw(in: valueLabelFrame, withAttributes: valueAttributes)
+            context.restoreGState()
+            
+            currentValue += bigStepValue
+            currentRadians += bigStepRadians
+        }
+        context.restoreGState()
+    }
+    
+    func drawSmallSeparator(in context: CGContext) {
+        var currentRadians = startRadians
+        context.saveGState()
+        let smallStepRadians = smallStepValue / valuePerRadians
+        let smallSeparatorFrame = CGRect(x: -widthSmallSeparator / 2, y: -heightSmallSeparator / 2, width: widthSmallSeparator, height: heightSmallSeparator)
+        let smallSeparatorPath = UIBezierPath(rect: smallSeparatorFrame)
+        colorSmallSeparator.setFill()
+        context.translateBy(x: bounds.midX, y: bounds.midY)
+        while currentRadians <= endRadians + pow(10, -10) {
+            context.saveGState()
+            context.rotate(by: -0.5 * .pi)
+            context.rotate(by: currentRadians)
+            context.translateBy(x: 0, y: radius - heightSmallSeparator / 2)
+            smallSeparatorPath.fill()
+            currentRadians += smallStepRadians
+            context.restoreGState()
+        }
+        context.restoreGState()
     }
 }
