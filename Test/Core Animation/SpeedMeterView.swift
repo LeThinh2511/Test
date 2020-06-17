@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol SpeedMeterViewDelegate: class {
+    func speedMeterView(_ view: SpeedMeterView, didChange value: CGFloat)
+}
+
 class SpeedMeterView: UIView {
     private enum Direction {
         case none
@@ -60,6 +64,7 @@ class SpeedMeterView: UIView {
         return size / 2
     }
     
+    weak var delegate: SpeedMeterViewDelegate?
     var animationDuration: Double = 1
     var animationStyle: CAMediaTimingFunctionName = .linear
     
@@ -180,6 +185,7 @@ class SpeedMeterView: UIView {
     private func changeValue(newValue: CGFloat) {
         let roundedValue = Double(round(10 * newValue) / 10)
         currentValueLabel.text = "\(Int(roundedValue))"
+        delegate?.speedMeterView(self, didChange: newValue)
     }
     
     private func resumeReporter() {
