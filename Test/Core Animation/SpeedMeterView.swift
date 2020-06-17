@@ -135,6 +135,10 @@ class SpeedMeterView: UIView {
         indicatorLayer.path = indicatorPath.cgPath
         layer.addSublayer(indicatorLayer)
         indicatorLayer.position = centerPoint
+        indicatorLayer.shadowColor = UIColor.black.cgColor
+        indicatorLayer.shadowRadius = 3
+        indicatorLayer.shadowOffset = .zero
+        indicatorLayer.shadowOpacity = 0.8
         indicatorLayer.transform = CATransform3DMakeRotation(1.5 * .pi - startRadians, 0, 0, -1)
         
         // Center Point
@@ -162,12 +166,15 @@ class SpeedMeterView: UIView {
     }
     
     // MARK: Helper
-    private func radians(from value: CGFloat, offset: CGFloat = 0) -> CGFloat {
-        if maxValue == 0 {
+    private func radiansGap(from value: CGFloat) -> CGFloat {
+        if valuePerRadians == 0 {
             return 0
         }
-        let centerValue = maxValue / 2
-        return (value - centerValue) / valuePerRadians
+        return value / valuePerRadians
+    }
+    
+    private func radians(from value: CGFloat) -> CGFloat {
+        return (startRadians + radiansGap(from: value)) - 1.5 * .pi
     }
     
     private func changeValue(newValue: CGFloat) {
@@ -177,13 +184,12 @@ class SpeedMeterView: UIView {
     
     private func resumeReporter() {
         timer = Timer.scheduledTimer(withTimeInterval: 0.05, repeats: true, block: { [weak self] timer in
-            guard let `self` = self, let rotatedValue = self.indicatorLayer.presentation()?.value(forKeyPath: "transform.rotation.z") as? CGFloat else {
+            guard let `self` = self, let rotatedRadians = self.indicatorLayer.presentation()?.value(forKeyPath: "transform.rotation.z") as? CGFloat else {
                 return
             }
             switch self.direction {
             case .backward, .forward:
-                let centerValue = (2 * .pi - self.bottomRadians) / 2
-                let value = (rotatedValue + centerValue) * self.valuePerRadians
+                let value = (rotatedRadians + 1.5 * .pi - self.startRadians) * self.valuePerRadians
                 self.changeValue(newValue: value)
             case .none: break
             }
