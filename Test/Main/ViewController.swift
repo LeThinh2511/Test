@@ -16,8 +16,8 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         let string = "<i>This <b>text</b> is italic</i>"
         htmlLabel.attributedText = string.htmlToAttributedString
-        let secondColor = UIColor.hex("45FFF7")
-        let firstColor = UIColor.hex("B93BA9")
+        let secondColor = UIColor.hex("0000FF")
+        let firstColor = UIColor.hex("00FF00")
         let gradients: [Gradient] = [(firstColor, 0), (secondColor, 1)]
         gradientView.setGradients(gradients: gradients)
         

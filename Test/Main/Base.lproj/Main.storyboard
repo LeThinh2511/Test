@@ -52,7 +52,7 @@
                                             <constraint firstAttribute="height" constant="50" id="ALF-Yi-j22"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                        <state key="normal" title="Core Graphics">
+                                        <state key="normal" title="Core Graphics Raywenderlich tuorial">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
@@ -71,7 +71,7 @@
                                             <constraint firstAttribute="height" constant="50" id="j0W-53-TZ8"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                        <state key="normal" title="Core Graphics">
+                                        <state key="normal" title="Core Graphics and core animation">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
@@ -102,14 +102,33 @@
                                             <segue destination="7cX-UO-6eu" kind="show" id="IqW-Vc-7BW"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M4I-nt-6lC">
+                                        <rect key="frame" x="0.0" y="460" width="390" height="50"/>
+                                        <color key="backgroundColor" red="1" green="0.12549019610000001" blue="0.12549019610000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="1sK-lH-UfW"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <state key="normal" title="Core Graphics Shading vs Gradients">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <segue destination="tXw-aO-eGa" kind="show" id="1pP-Ie-TpI"/>
+                                        </connections>
+                                    </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="52C-AR-nWh">
-                                        <rect key="frame" x="0.0" y="460" width="390" height="20.5"/>
+                                        <rect key="frame" x="0.0" y="522" width="390" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nb2-v7-Ba6">
-                                        <rect key="frame" x="0.0" y="492.5" width="390" height="291.5"/>
+                                        <rect key="frame" x="0.0" y="554.5" width="390" height="229.5"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                     </view>
                                 </subviews>
@@ -133,6 +152,46 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1042.0289855072465" y="138.61607142857142"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="nQe-Dg-iG8">
+            <objects>
+                <viewController id="tXw-aO-eGa" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="PpA-uq-Tuf">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="RYj-l4-VW1">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="774"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9J4-F6-j30" customClass="ShadingView" customModule="Test" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="200"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="200" id="MJa-u9-LVy"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" horizontalHuggingPriority="249" verticalHuggingPriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="pow-8W-20J">
+                                        <rect key="frame" x="0.0" y="200" width="414" height="574"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.054901960780000002" green="0.1137254902" blue="0.42745098040000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="jmv-sB-gZk" firstAttribute="bottom" secondItem="RYj-l4-VW1" secondAttribute="bottom" id="7PZ-0U-r0g"/>
+                            <constraint firstItem="RYj-l4-VW1" firstAttribute="top" secondItem="jmv-sB-gZk" secondAttribute="top" id="D1z-wb-fkQ"/>
+                            <constraint firstItem="jmv-sB-gZk" firstAttribute="trailing" secondItem="RYj-l4-VW1" secondAttribute="trailing" id="cuH-AI-Jlz"/>
+                            <constraint firstItem="RYj-l4-VW1" firstAttribute="leading" secondItem="jmv-sB-gZk" secondAttribute="leading" id="hK5-yS-Dt9"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="jmv-sB-gZk"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="SBV-NA-nmB"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="r76-xY-Olh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1736" y="684"/>
         </scene>
         <!--Core Animation View Controller-->
         <scene sceneID="VEq-K8-V7K">
@@ -189,7 +248,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VAV-Go-GqS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1825" y="500"/>
+            <point key="canvasLocation" x="2513" y="642"/>
         </scene>
         <!--Core Graphics 1-->
         <scene sceneID="apS-dC-gww">

@@ -82,6 +82,7 @@ class SpeedMeterView: UIView {
     
     override func draw(_ rect: CGRect) {
         guard let context = UIGraphicsGetCurrentContext() else { return }
+//        context.setShouldAntialias(true)
         drawBigSeparator(in: context)
         drawSmallSeparator(in: context)
         let currentValueOrigin = CGPoint(x: centerPoint.x - valueRectSize.width / 2, y: centerPoint.y + valueRectOffset)
