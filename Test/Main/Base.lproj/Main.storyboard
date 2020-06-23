@@ -685,11 +685,26 @@
                                                     <constraint firstAttribute="height" constant="200" id="HeR-Cx-ICD"/>
                                                 </constraints>
                                             </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qIt-bR-vkc" customClass="SquircleView" customModule="Test" customModuleProvider="target">
+                                                <rect key="frame" x="107" y="300" width="200" height="200"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="200" id="LI7-Wg-WHf"/>
+                                                    <constraint firstAttribute="width" constant="200" id="tQg-O7-yz7"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                                        <color key="value" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="P1Q-xm-5ML" firstAttribute="leading" secondItem="ZlR-jK-siG" secondAttribute="leading" constant="20" id="47q-O4-Z1Y"/>
+                                            <constraint firstItem="qIt-bR-vkc" firstAttribute="top" secondItem="P1Q-xm-5ML" secondAttribute="bottom" constant="50" id="4f6-xS-wnN"/>
                                             <constraint firstItem="P1Q-xm-5ML" firstAttribute="centerX" secondItem="ZlR-jK-siG" secondAttribute="centerX" id="8Ms-LW-VJ8"/>
+                                            <constraint firstItem="qIt-bR-vkc" firstAttribute="centerX" secondItem="ZlR-jK-siG" secondAttribute="centerX" id="KSn-E5-Qms"/>
                                             <constraint firstItem="P1Q-xm-5ML" firstAttribute="top" secondItem="ZlR-jK-siG" secondAttribute="top" constant="50" id="Lls-dM-1hw"/>
                                         </constraints>
                                     </view>

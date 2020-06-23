@@ -72,13 +72,13 @@ class LineChartViewController: DemoBaseViewController {
         
         chartView.rightAxis.enabled = false
 
-        let marker = BalloonMarker(color: .clear,
-                                   font: .systemFont(ofSize: 17, weight: .medium),
-                                   textColor: .white,
-                                   insets: UIEdgeInsets.zero)
-        marker.chartView = chartView
-        marker.minimumSize = CGSize(width: 80, height: 40)
-        chartView.marker = marker
+//        let marker = BalloonMarker(color: .clear,
+//                                   font: .systemFont(ofSize: 17, weight: .medium),
+//                                   textColor: .white,
+//                                   insets: UIEdgeInsets.zero)
+//        marker.chartView = chartView
+//        marker.minimumSize = CGSize(width: 80, height: 40)
+//        chartView.marker = marker
         
         chartView.legend.form = .line
         
