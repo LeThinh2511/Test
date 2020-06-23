@@ -154,6 +154,7 @@
 		7B7E1C7A24694C710023CDBB /* GraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7E1C7924694C710023CDBB /* GraphView.swift */; };
 		7BB59C592498B2860021A118 /* SpeedMeterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB59C582498B2860021A118 /* SpeedMeterView.swift */; };
 		7BB60A832497839D000C50FA /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB60A822497839D000C50FA /* ChartView.swift */; };
+		7BC19D4024A1B085000191EB /* BezierConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BC19D3F24A1B085000191EB /* BezierConfiguration.swift */; };
 		7BCA236223C6DFCD00F829B4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCA236123C6DFCD00F829B4 /* AppDelegate.swift */; };
 		7BCA236623C6DFCD00F829B4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCA236523C6DFCD00F829B4 /* ViewController.swift */; };
 		7BCA236923C6DFCD00F829B4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7BCA236723C6DFCD00F829B4 /* Main.storyboard */; };
@@ -331,6 +332,7 @@
 		7B7E1C7924694C710023CDBB /* GraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphView.swift; sourceTree = "<group>"; };
 		7BB59C582498B2860021A118 /* SpeedMeterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedMeterView.swift; sourceTree = "<group>"; };
 		7BB60A822497839D000C50FA /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
+		7BC19D3F24A1B085000191EB /* BezierConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BezierConfiguration.swift; sourceTree = "<group>"; };
 		7BCA235E23C6DFCD00F829B4 /* Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Test.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7BCA236123C6DFCD00F829B4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7BCA236523C6DFCD00F829B4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -671,6 +673,7 @@
 				7B33E10124A04C7F00E0D642 /* LineChart.swift */,
 				7B33E10324A051AD00E0D642 /* DataEntry.swift */,
 				7B33E10B24A05E0F00E0D642 /* DataSet.swift */,
+				7BC19D3F24A1B085000191EB /* BezierConfiguration.swift */,
 			);
 			path = Chart;
 			sourceTree = "<group>";
@@ -1087,6 +1090,7 @@
 				7BE369F62487B35800AFF47A /* CircleProgressViewController.swift in Sources */,
 				7B09CB9D246504CD00DFE73E /* Platform+Gestures.swift in Sources */,
 				7B507991248753B80069119E /* CircleProgressView.swift in Sources */,
+				7BC19D4024A1B085000191EB /* BezierConfiguration.swift in Sources */,
 				7B09CBBF246504CD00DFE73E /* RadarChartData.swift in Sources */,
 				7B7A141C249C672D0069CEE2 /* ShadingView.swift in Sources */,
 				7B09CB91246504CD00DFE73E /* Animator.swift in Sources */,

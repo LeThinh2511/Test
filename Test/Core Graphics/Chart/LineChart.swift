@@ -21,6 +21,7 @@ class LineChart: UIView {
         }
     }
     
+    private let configuration = BezierConfiguration()
     private var startPoint: CGPoint = .zero
     
     override func awakeFromNib() {
@@ -84,6 +85,8 @@ class LineChart: UIView {
         }
         let path = UIBezierPath()
         path.lineJoinStyle = .round
+
+        var endPoints = [CGPoint]()
         
         // Move to start point
         startPoint = CGPoint(x: xValue(from: 0), y: yValue(from: firstEntry.value))
@@ -91,7 +94,12 @@ class LineChart: UIView {
         
         for (index, entry) in entries.enumerated() {
             let point = CGPoint(x: xValue(from: index), y: yValue(from: entry.value))
-            path.addLine(to: point)
+            endPoints.append(point)
+        }
+        let controlPoints = configuration.configureControlPoints(data: endPoints)
+        for i in 1..<endPoints.count {
+            let endPoint = endPoints[i]
+            path.addCurve(to: endPoint, controlPoint1: controlPoints[i - 1].firstControlPoint, controlPoint2: controlPoints[i - 1].secondControlPoint)
         }
         return path
     }
