@@ -14,7 +14,7 @@ class SquircleView: UIView {
     
     @IBInspectable var color: UIColor = .white
     @IBInspectable var colorBorder: UIColor = .gray
-    @IBInspectable var widthBorder: CGFloat = 2
+    @IBInspectable var widthBorder: CGFloat = 0
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -71,20 +71,24 @@ class SquircleView: UIView {
             let endPoint = endPoints[i]
             path.addCurve(to: endPoint, controlPoint1: controlPoints[i - 1].firstControlPoint, controlPoint2: controlPoints[i - 1].secondControlPoint)
         }
-//        let squircleLayer = CAShapeLayer()
-//        squircleLayer.path = path.cgPath
-//        squircleLayer.fillColor = color.cgColor
-//        squircleLayer.strokeColor = colorBorder.cgColor
-//        squircleLayer.lineWidth = widthBorder
-//        layer.addSublayer(squircleLayer)
-//        path.addClip()
-//        context.setFillColor(color.cgColor)
-//        context.fillPath()
-//        path.lineWidth = 1
-        color.setFill()
-        path.fill()
         
-//        UIColor.yellow.setStroke()
-//        path.stroke()
+        let squircleBorderLayer = CAShapeLayer()
+        squircleBorderLayer.path = path.cgPath
+        squircleBorderLayer.fillColor = colorBorder.cgColor
+        squircleBorderLayer.lineWidth = 0
+        layer.addSublayer(squircleBorderLayer)
+        
+        let scaleX = (width - widthBorder) / width
+        let scaleY = (height - widthBorder) / height
+        let translationX = widthBorder / 2
+        let squircleLayer = CAShapeLayer()
+        squircleLayer.path = path.cgPath
+        squircleLayer.fillColor = color.cgColor
+        squircleLayer.strokeColor = UIColor.clear.cgColor
+        squircleLayer.lineWidth = widthBorder
+        let scale = CATransform3DMakeScale(scaleX, scaleY, 1)
+        let translation = CATransform3DMakeTranslation(translationX, translationX, 0)
+        squircleLayer.transform = CATransform3DConcat(scale, translation)
+        layer.addSublayer(squircleLayer)
     }
 }

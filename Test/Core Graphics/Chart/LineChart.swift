@@ -20,8 +20,6 @@ class LineChart: UIView {
             setNeedsDisplay()
         }
     }
-    
-    private let configuration = BezierConfiguration()
     private var startPoint: CGPoint = .zero
     
     override func awakeFromNib() {
@@ -32,6 +30,7 @@ class LineChart: UIView {
     override func draw(_ rect: CGRect) {
         guard let context = UIGraphicsGetCurrentContext() else { return }
         drawXAxis(in: context)
+        guard dataSet.entries.count > 0 else { return }
         
         let linePath = getLinePath()
         
@@ -47,7 +46,7 @@ class LineChart: UIView {
         let colors: [CGColor] = [UIColor.yellow.cgColor, UIColor.yellow.withAlphaComponent(0.1).cgColor]
         let gradient = CGGradient(colorsSpace: colorsSpace, colors: colors as CFArray, locations: [0, 1])!
         let maxEntryValue = dataSet.maxEntry?.value ?? 0
-        let maxYValue = yValue(from: maxEntryValue)
+        let maxYValue = yValue(from: maxEntryValue) - lineWidth
         let startPoint = CGPoint(x: 0, y: maxYValue)
         let endPoint = CGPoint(x: 0, y: bounds.height)
         context.drawLinearGradient(gradient, start: startPoint, end: endPoint, options: [])
@@ -89,13 +88,14 @@ class LineChart: UIView {
         var endPoints = [CGPoint]()
         
         // Move to start point
-        startPoint = CGPoint(x: xValue(from: 0), y: yValue(from: firstEntry.value))
+        startPoint = CGPoint(x: xValue(from: 0), y: yValue(from: firstEntry.value) + lineWidth)
         path.move(to: startPoint)
         
         for (index, entry) in entries.enumerated() {
-            let point = CGPoint(x: xValue(from: index), y: yValue(from: entry.value))
+            let point = CGPoint(x: xValue(from: index), y: yValue(from: entry.value) + lineWidth)
             endPoints.append(point)
         }
+        let configuration = BezierConfiguration()
         let controlPoints = configuration.configureControlPoints(data: endPoints)
         for i in 1..<endPoints.count {
             let endPoint = endPoints[i]

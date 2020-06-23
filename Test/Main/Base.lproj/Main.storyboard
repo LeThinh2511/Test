@@ -687,25 +687,65 @@
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qIt-bR-vkc" customClass="SquircleView" customModule="Test" customModuleProvider="target">
                                                 <rect key="frame" x="107" y="300" width="200" height="200"/>
+                                                <subviews>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="akX-AJ-cTb">
+                                                        <rect key="frame" x="79" y="79.5" width="42" height="41"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uNI-jB-Rzc">
+                                                                <rect key="frame" x="0.0" y="0.0" width="42" height="20.5"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <color key="textColor" red="1" green="0.18039215689999999" blue="0.94509803920000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HFu-wy-ZkC">
+                                                                <rect key="frame" x="0.0" y="20.5" width="42" height="20.5"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                    </stackView>
+                                                </subviews>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                 <constraints>
+                                                    <constraint firstItem="akX-AJ-cTb" firstAttribute="centerY" secondItem="qIt-bR-vkc" secondAttribute="centerY" id="GHs-ra-Yze"/>
                                                     <constraint firstAttribute="height" constant="200" id="LI7-Wg-WHf"/>
+                                                    <constraint firstItem="akX-AJ-cTb" firstAttribute="centerX" secondItem="qIt-bR-vkc" secondAttribute="centerX" id="Pej-KL-i8m"/>
                                                     <constraint firstAttribute="width" constant="200" id="tQg-O7-yz7"/>
                                                 </constraints>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="color" keyPath="color">
-                                                        <color key="value" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="value" red="0.18431372549019609" green="0.72941176470588232" blue="0.94117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="colorBorder">
+                                                        <color key="value" red="1" green="0.18039215689999999" blue="0.94509803920000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jbb-pj-1As">
+                                                <rect key="frame" x="20" y="684" width="374" height="40"/>
+                                                <color key="backgroundColor" red="1" green="0.18039215689999999" blue="0.94509803920000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="40" id="Tvk-Xd-iEi"/>
+                                                </constraints>
+                                                <state key="normal" title="Update value">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="didTapUpdateValue:" destination="QLX-eZ-RWe" eventType="touchUpInside" id="RQL-hd-cPp"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="P1Q-xm-5ML" firstAttribute="leading" secondItem="ZlR-jK-siG" secondAttribute="leading" constant="20" id="47q-O4-Z1Y"/>
                                             <constraint firstItem="qIt-bR-vkc" firstAttribute="top" secondItem="P1Q-xm-5ML" secondAttribute="bottom" constant="50" id="4f6-xS-wnN"/>
                                             <constraint firstItem="P1Q-xm-5ML" firstAttribute="centerX" secondItem="ZlR-jK-siG" secondAttribute="centerX" id="8Ms-LW-VJ8"/>
+                                            <constraint firstItem="Jbb-pj-1As" firstAttribute="centerX" secondItem="ZlR-jK-siG" secondAttribute="centerX" id="FvV-rY-8oz"/>
+                                            <constraint firstAttribute="bottom" secondItem="Jbb-pj-1As" secondAttribute="bottom" constant="50" id="HCX-cD-zxa"/>
                                             <constraint firstItem="qIt-bR-vkc" firstAttribute="centerX" secondItem="ZlR-jK-siG" secondAttribute="centerX" id="KSn-E5-Qms"/>
                                             <constraint firstItem="P1Q-xm-5ML" firstAttribute="top" secondItem="ZlR-jK-siG" secondAttribute="top" constant="50" id="Lls-dM-1hw"/>
+                                            <constraint firstItem="Jbb-pj-1As" firstAttribute="leading" secondItem="ZlR-jK-siG" secondAttribute="leading" constant="20" id="kfs-my-tuE"/>
                                         </constraints>
                                     </view>
                                 </subviews>
