@@ -715,6 +715,9 @@
                                                     <userDefinedRuntimeAttribute type="number" keyPath="lineShadowRadius">
                                                         <real key="value" value="5"/>
                                                     </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="xOffset">
+                                                        <real key="value" value="4"/>
+                                                    </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qIt-bR-vkc" customClass="SquircleView" customModule="Test" customModuleProvider="target">

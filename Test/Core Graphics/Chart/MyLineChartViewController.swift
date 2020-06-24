@@ -32,12 +32,6 @@ class MyLineChartViewController: UIViewController {
             entries.removeFirst()
         }
         entries.append(entry)
-        var strings = "["
-        for entry in entries {
-            strings += "\(Int(entry.value)) "
-        }
-        strings += "]"
-        print(strings)
         let dataSet = DataSet(entries: entries, xLabels: xLabels, yLabels: yLabels, maxValue: 70)
         chartView.dataSet = dataSet
     }

@@ -25,4 +25,8 @@ class DataSet {
     var maxEntry: DataEntry? {
         return entries.max { $0.value < $1.value }
     }
+    
+    var minEntry: DataEntry? {
+        return entries.min { $0.value < $1.value }
+    }
 }
