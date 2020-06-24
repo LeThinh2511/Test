@@ -9,11 +9,19 @@
 import UIKit
 
 class LineChart: UIView {
-    var xAxisWidth: CGFloat = 1
-    var xAxisColor: UIColor = .white
+    @IBInspectable var xAxisWidth: CGFloat = 1
+    @IBInspectable var xAxisColor: UIColor = .white
     
-    var lineColor: UIColor = .red
-    var lineWidth: CGFloat = 8
+    @IBInspectable var lineColor1: UIColor = .yellow
+    @IBInspectable var lineColor2: UIColor = .green
+    @IBInspectable var lineColor3: UIColor = .yellow
+    @IBInspectable var lineWidth: CGFloat = 8
+    
+    @IBInspectable var fillColor: UIColor = .yellow
+    
+    @IBInspectable var lineShadowColor: UIColor = .black
+    @IBInspectable var lineShadowOffset: CGSize = .zero
+    @IBInspectable var lineShadowRadius: CGFloat = 0
     
     var xOffset: CGFloat = 4
     
@@ -31,6 +39,8 @@ class LineChart: UIView {
     
     override func draw(_ rect: CGRect) {
         guard let context = UIGraphicsGetCurrentContext() else { return }
+        let colorsSpace = CGColorSpaceCreateDeviceRGB()
+        context.setFillColorSpace(colorsSpace)
         drawXAxis(in: context)
         guard dataSet.entries.count > 0 else { return }
         
@@ -44,8 +54,7 @@ class LineChart: UIView {
         fillPath.addLine(to: CGPoint(x: startPoint.x, y: bounds.height))
         fillPath.close()
         fillPath.addClip()
-        let colorsSpace = CGColorSpaceCreateDeviceRGB()
-        let colors: [CGColor] = [UIColor.yellow.cgColor, UIColor.yellow.withAlphaComponent(0).cgColor]
+        let colors: [CGColor] = [fillColor.cgColor, fillColor.withAlphaComponent(0).cgColor]
         let fillGradient = CGGradient(colorsSpace: colorsSpace, colors: colors as CFArray, locations: [0, 1])!
         let maxEntryValue = dataSet.maxEntry?.value ?? 0
         let maxYValue = yValue(from: maxEntryValue) - lineWidth
@@ -54,11 +63,18 @@ class LineChart: UIView {
         context.drawLinearGradient(fillGradient, start: startPoint, end: endPoint, options: [])
         context.restoreGState()
         
-        // Line path
-        // Create the gradient
-        let lineGradient = CGGradient(colorsSpace: colorsSpace, colors: [UIColor.yellow.cgColor,UIColor.green.cgColor] as CFArray, locations: nil)!
-
-        // Draw the graph and apply the gradient
+        // Draw Shadow
+        context.saveGState()
+        let shadowPath = linePath.copy() as! UIBezierPath
+        context.setShadow(offset: lineShadowOffset, blur: lineShadowRadius, color: lineShadowColor.cgColor)
+        shadowPath.lineWidth = lineWidth
+        UIColor.white.setStroke()
+        shadowPath.lineCapStyle = .round
+        shadowPath.stroke()
+        context.restoreGState()
+        
+        // Draw the line and apply the gradient
+        let lineGradient = CGGradient(colorsSpace: colorsSpace, colors: [lineColor1.cgColor, lineColor2.cgColor, lineColor3.cgColor] as CFArray, locations: [0, 0.5, 1])!
         context.setLineWidth(lineWidth)
         context.setLineCap(.round)
         context.saveGState()
