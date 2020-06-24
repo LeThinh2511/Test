@@ -15,6 +15,8 @@ class LineChart: UIView {
     var lineColor: UIColor = .red
     var lineWidth: CGFloat = 8
     
+    var xOffset: CGFloat = 4
+    
     var dataSet = DataSet(entries: [], xLabels: [], yLabels: [], maxValue: 0) {
         didSet {
             setNeedsDisplay()
@@ -43,33 +45,38 @@ class LineChart: UIView {
         fillPath.close()
         fillPath.addClip()
         let colorsSpace = CGColorSpaceCreateDeviceRGB()
-        let colors: [CGColor] = [UIColor.yellow.cgColor, UIColor.yellow.withAlphaComponent(0.1).cgColor]
-        let gradient = CGGradient(colorsSpace: colorsSpace, colors: colors as CFArray, locations: [0, 1])!
+        let colors: [CGColor] = [UIColor.yellow.cgColor, UIColor.yellow.withAlphaComponent(0).cgColor]
+        let fillGradient = CGGradient(colorsSpace: colorsSpace, colors: colors as CFArray, locations: [0, 1])!
         let maxEntryValue = dataSet.maxEntry?.value ?? 0
         let maxYValue = yValue(from: maxEntryValue) - lineWidth
         let startPoint = CGPoint(x: 0, y: maxYValue)
         let endPoint = CGPoint(x: 0, y: bounds.height)
-        context.drawLinearGradient(gradient, start: startPoint, end: endPoint, options: [])
+        context.drawLinearGradient(fillGradient, start: startPoint, end: endPoint, options: [])
         context.restoreGState()
         
         // Line path
-        linePath.lineWidth = lineWidth
-        linePath.lineCapStyle = .round
-        lineColor.setStroke()
-        linePath.stroke()
+        // Create the gradient
+        let lineGradient = CGGradient(colorsSpace: colorsSpace, colors: [UIColor.yellow.cgColor,UIColor.green.cgColor] as CFArray, locations: nil)!
+
+        // Draw the graph and apply the gradient
+        context.setLineWidth(lineWidth)
+        context.setLineCap(.round)
+        context.saveGState()
+        context.addPath(linePath.cgPath)
+        context.replacePathWithStrokedPath()
+        context.clip()
+        context.drawLinearGradient(lineGradient, start: .zero, end: CGPoint(x: frame.width, y: 0), options: [])
+        context.restoreGState()
     }
     
     func drawXAxis(in context: CGContext) {
         let height = bounds.height
-        let width = bounds.width
         let xCount = dataSet.xLabels.count
         let xAxisRect = CGRect(x: 0, y: 0, width: xAxisWidth, height: height)
         let xAxisPath = UIBezierPath(rect: xAxisRect)
-        let xGap = width / (CGFloat(xCount) - 1)
         context.setFillColor(xAxisColor.cgColor)
-        let xOffset = xAxisWidth / CGFloat(xCount - 1)
         for i in 0..<xCount {
-            let x = CGFloat(i) * (xGap - xOffset)
+            let x = xValue(from: i)
             context.saveGState()
             context.translateBy(x: x, y: 0)
             xAxisPath.fill()
@@ -112,8 +119,8 @@ class LineChart: UIView {
     
     func xValue(from value: Int) -> CGFloat {
         let xCount = dataSet.xLabels.count
-        let xGap = bounds.width / (CGFloat(xCount) - 1)
+        let xGap = (bounds.width - 2 * self.xOffset) / (CGFloat(xCount) - 1)
         let xOffset = xAxisWidth / CGFloat(xCount - 1)
-        return CGFloat(value) * (xGap - xOffset)
+        return self.xOffset + CGFloat(value) * (xGap - xOffset)
     }
 }
