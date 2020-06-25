@@ -140,6 +140,7 @@
 		7B09CBF524650A9400DFE73E /* BalloonMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B09CBF424650A9400DFE73E /* BalloonMarker.swift */; };
 		7B09CBFB24650EC500DFE73E /* LineChartViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B09CBF924650EC500DFE73E /* LineChartViewController.xib */; };
 		7B18585E246A6566006C6A67 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B18585D246A6566006C6A67 /* StringExtension.swift */; };
+		7B2D491024A34F2E0005C531 /* Drag&DropViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B2D490F24A34F2E0005C531 /* Drag&DropViewController.swift */; };
 		7B33E10224A04C7F00E0D642 /* LineChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B33E10124A04C7F00E0D642 /* LineChart.swift */; };
 		7B33E10424A051AD00E0D642 /* DataEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B33E10324A051AD00E0D642 /* DataEntry.swift */; };
 		7B33E10A24A05CA900E0D642 /* MyLineChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B33E10924A05CA900E0D642 /* MyLineChartViewController.swift */; };
@@ -166,6 +167,12 @@
 		7BCAB7EE2463A78400D87B67 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCAB7ED2463A78400D87B67 /* UIViewExtension.swift */; };
 		7BCAB7F02463F57000D87B67 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCAB7EF2463F57000D87B67 /* UIColorExtension.swift */; };
 		7BE369F62487B35800AFF47A /* CircleProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE369F52487B35800AFF47A /* CircleProgressViewController.swift */; };
+		7BF421B024A4527D004457BD /* AnimalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BF421AE24A4527D004457BD /* AnimalCell.swift */; };
+		7BF421B124A4527D004457BD /* AnimalCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7BF421AF24A4527D004457BD /* AnimalCell.xib */; };
+		7BF421B324A452CA004457BD /* NSObjectExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BF421B224A452CA004457BD /* NSObjectExtension.swift */; };
+		7BF421B524A453AD004457BD /* Animal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BF421B424A453AD004457BD /* Animal.swift */; };
+		7BF421B824A4573F004457BD /* PlaceholderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BF421B624A4573F004457BD /* PlaceholderCell.swift */; };
+		7BF421B924A4573F004457BD /* PlaceholderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7BF421B724A4573F004457BD /* PlaceholderCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -319,6 +326,7 @@
 		7B09CBF424650A9400DFE73E /* BalloonMarker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalloonMarker.swift; sourceTree = "<group>"; };
 		7B09CBF924650EC500DFE73E /* LineChartViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LineChartViewController.xib; sourceTree = "<group>"; };
 		7B18585D246A6566006C6A67 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
+		7B2D490F24A34F2E0005C531 /* Drag&DropViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Drag&DropViewController.swift"; sourceTree = "<group>"; };
 		7B33E10124A04C7F00E0D642 /* LineChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineChart.swift; sourceTree = "<group>"; };
 		7B33E10324A051AD00E0D642 /* DataEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataEntry.swift; sourceTree = "<group>"; };
 		7B33E10924A05CA900E0D642 /* MyLineChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLineChartViewController.swift; sourceTree = "<group>"; };
@@ -351,6 +359,12 @@
 		7BCAB7ED2463A78400D87B67 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UI\U0010View\U0010Extension.swift"; sourceTree = "<group>"; };
 		7BCAB7EF2463F57000D87B67 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		7BE369F52487B35800AFF47A /* CircleProgressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleProgressViewController.swift; sourceTree = "<group>"; };
+		7BF421AE24A4527D004457BD /* AnimalCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimalCell.swift; sourceTree = "<group>"; };
+		7BF421AF24A4527D004457BD /* AnimalCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AnimalCell.xib; sourceTree = "<group>"; };
+		7BF421B224A452CA004457BD /* NSObjectExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSObjectExtension.swift; sourceTree = "<group>"; };
+		7BF421B424A453AD004457BD /* Animal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animal.swift; sourceTree = "<group>"; };
+		7BF421B624A4573F004457BD /* PlaceholderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderCell.swift; sourceTree = "<group>"; };
+		7BF421B724A4573F004457BD /* PlaceholderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlaceholderCell.xib; sourceTree = "<group>"; };
 		7CFFA31D83800C67A29092D8 /* Pods-Test.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Test.release.xcconfig"; path = "Target Support Files/Pods-Test/Pods-Test.release.xcconfig"; sourceTree = "<group>"; };
 		C1EDA999FEBF12763BD2EFEE /* Pods-TestTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestTests.debug.xcconfig"; path = "Target Support Files/Pods-TestTests/Pods-TestTests.debug.xcconfig"; sourceTree = "<group>"; };
 		C2DEFCC9F0465ECE4964994A /* Pods_Test_TestUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Test_TestUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -656,7 +670,7 @@
 			path = Interfaces;
 			sourceTree = "<group>";
 		};
-		7B09CBFC2465174300DFE73E /* ChartTest */ = {
+		7B09CBFC2465174300DFE73E /* ChartsGithub */ = {
 			isa = PBXGroup;
 			children = (
 				7B09CBF0246509D600DFE73E /* LineChartViewController.swift */,
@@ -665,7 +679,25 @@
 				7B09CBF924650EC500DFE73E /* LineChartViewController.xib */,
 				7B09CABE246504CD00DFE73E /* Charts */,
 			);
-			path = ChartTest;
+			path = ChartsGithub;
+			sourceTree = "<group>";
+		};
+		7B2D490D24A34EAE0005C531 /* SquircleView */ = {
+			isa = PBXGroup;
+			children = (
+				7BC19D4324A1B929000191EB /* SquircleView.swift */,
+			);
+			path = SquircleView;
+			sourceTree = "<group>";
+		};
+		7B2D490E24A34F060005C531 /* Drag&Drop */ = {
+			isa = PBXGroup;
+			children = (
+				7B2D490F24A34F2E0005C531 /* Drag&DropViewController.swift */,
+				7BF421B424A453AD004457BD /* Animal.swift */,
+				7BF421BA24A457C1004457BD /* Cells */,
+			);
+			path = "Drag&Drop";
 			sourceTree = "<group>";
 		};
 		7B33E0FE24A04AEF00E0D642 /* Chart */ = {
@@ -676,7 +708,6 @@
 				7B33E10324A051AD00E0D642 /* DataEntry.swift */,
 				7B33E10B24A05E0F00E0D642 /* DataSet.swift */,
 				7BC19D3F24A1B085000191EB /* BezierConfiguration.swift */,
-				7BC19D4324A1B929000191EB /* SquircleView.swift */,
 			);
 			path = Chart;
 			sourceTree = "<group>";
@@ -703,6 +734,7 @@
 		7B7E1C6E246907420023CDBB /* Core Graphics */ = {
 			isa = PBXGroup;
 			children = (
+				7B2D490D24A34EAE0005C531 /* SquircleView */,
 				7B33E0FE24A04AEF00E0D642 /* Chart */,
 				7B7A141A249C67110069CEE2 /* Gradients */,
 				7B7E1C7824694C4C0023CDBB /* Flo */,
@@ -716,6 +748,7 @@
 				7BCAB7ED2463A78400D87B67 /* UIViewExtension.swift */,
 				7BCAB7EF2463F57000D87B67 /* UIColorExtension.swift */,
 				7B18585D246A6566006C6A67 /* StringExtension.swift */,
+				7BF421B224A452CA004457BD /* NSObjectExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -780,9 +813,10 @@
 				7BCA236123C6DFCD00F829B4 /* AppDelegate.swift */,
 				7B5CB6E22480BC3C0039E577 /* SSpeed */,
 				7B7E1C71246907890023CDBB /* Main */,
-				7B09CBFC2465174300DFE73E /* ChartTest */,
 				3296DD80246FC7D500CEDF3A /* Core Animation */,
 				7B7E1C6E246907420023CDBB /* Core Graphics */,
+				7B2D490E24A34F060005C531 /* Drag&Drop */,
+				7B09CBFC2465174300DFE73E /* ChartsGithub */,
 				7B7E1C6F246907620023CDBB /* Extensions */,
 				7B7E1C70246907710023CDBB /* Resources */,
 			);
@@ -805,6 +839,17 @@
 				7BCA238523C6DFCE00F829B4 /* Info.plist */,
 			);
 			path = TestUITests;
+			sourceTree = "<group>";
+		};
+		7BF421BA24A457C1004457BD /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				7BF421AE24A4527D004457BD /* AnimalCell.swift */,
+				7BF421AF24A4527D004457BD /* AnimalCell.xib */,
+				7BF421B624A4573F004457BD /* PlaceholderCell.swift */,
+				7BF421B724A4573F004457BD /* PlaceholderCell.xib */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		FD4FD641F327CB56DE21CA8D /* Pods */ = {
@@ -929,6 +974,8 @@
 			files = (
 				7BCA236E23C6DFCE00F829B4 /* LaunchScreen.storyboard in Resources */,
 				7BCA236B23C6DFCE00F829B4 /* Assets.xcassets in Resources */,
+				7BF421B124A4527D004457BD /* AnimalCell.xib in Resources */,
+				7BF421B924A4573F004457BD /* PlaceholderCell.xib in Resources */,
 				7B09CBFB24650EC500DFE73E /* LineChartViewController.xib in Resources */,
 				7BCA236923C6DFCD00F829B4 /* Main.storyboard in Resources */,
 			);
@@ -1035,6 +1082,7 @@
 				7B09CB83246504CD00DFE73E /* CombinedHighlighter.swift in Sources */,
 				7B09CB6E246504CD00DFE73E /* IShapeRenderer.swift in Sources */,
 				7B09CB94246504CD00DFE73E /* DefaultValueFormatter.swift in Sources */,
+				7BF421B524A453AD004457BD /* Animal.swift in Sources */,
 				7B09CB9F246504CD00DFE73E /* Platform+Accessibility.swift in Sources */,
 				7B09CBE9246505AA00DFE73E /* HorizontalBarChartView.swift in Sources */,
 				7B09CB9B246504CD00DFE73E /* Platform+Touch Handling.swift in Sources */,
@@ -1076,6 +1124,7 @@
 				7B09CBA7246504CD00DFE73E /* MarkerImage.swift in Sources */,
 				7B7E1C7A24694C710023CDBB /* GraphView.swift in Sources */,
 				7B09CB95246504CD00DFE73E /* DefaultAxisValueFormatter.swift in Sources */,
+				7BF421B324A452CA004457BD /* NSObjectExtension.swift in Sources */,
 				7B09CBB3246504CD00DFE73E /* ZoomViewJob.swift in Sources */,
 				7B09CB79246504CD00DFE73E /* LineScatterCandleRadarRenderer.swift in Sources */,
 				7B09CBF324650A1200DFE73E /* DemoBaseViewController.swift in Sources */,
@@ -1096,6 +1145,7 @@
 				7B507991248753B80069119E /* CircleProgressView.swift in Sources */,
 				7BC19D4024A1B085000191EB /* BezierConfiguration.swift in Sources */,
 				7B09CBBF246504CD00DFE73E /* RadarChartData.swift in Sources */,
+				7BF421B824A4573F004457BD /* PlaceholderCell.swift in Sources */,
 				7B7A141C249C672D0069CEE2 /* ShadingView.swift in Sources */,
 				7B09CB91246504CD00DFE73E /* Animator.swift in Sources */,
 				7B09CBB0246504CD00DFE73E /* AnimatedZoomViewJob.swift in Sources */,
@@ -1117,6 +1167,7 @@
 				7B09CBA2246504CD00DFE73E /* TransformerHorizontalBarChart.swift in Sources */,
 				7B09CB69246504CD00DFE73E /* LineRadarRenderer.swift in Sources */,
 				7B09CBE2246504CD00DFE73E /* LineChartDataProvider.swift in Sources */,
+				7BF421B024A4527D004457BD /* AnimalCell.swift in Sources */,
 				7B09CBC4246504CD00DFE73E /* ChartDataEntryBase.swift in Sources */,
 				7B09CBD6246504CD00DFE73E /* IRadarChartDataSet.swift in Sources */,
 				7B09CB96246504CD00DFE73E /* IndexAxisValueFormatter.swift in Sources */,
@@ -1156,6 +1207,7 @@
 				7B09CBA3246504CD00DFE73E /* Platform+Color.swift in Sources */,
 				7B09CBB5246504CD00DFE73E /* AnimatedMoveViewJob.swift in Sources */,
 				7B09CB5D246504CD00DFE73E /* LegendRenderer.swift in Sources */,
+				7B2D491024A34F2E0005C531 /* Drag&DropViewController.swift in Sources */,
 				7B09CBE0246504CD00DFE73E /* CandleChartDataProvider.swift in Sources */,
 				7B09CBB4246504CD00DFE73E /* AnimatedViewPortJob.swift in Sources */,
 				7B33E10424A051AD00E0D642 /* DataEntry.swift in Sources */,
