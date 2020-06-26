@@ -66,75 +66,94 @@ class Drag_DropViewController: UIViewController {
         if sourcePackage == nil, let package = getPackage(contains: pressPoint) {
             sourcePackage = package
         }
-        let sourceTable = sourcePackage!.tableView
         switch recognizer.state {
         case .began:
-            if let indexPath = sourceTable.indexPath(for: cell),
-                let snapshot = cell.snapshotView(afterScreenUpdates: false),
-                let dragCellType = sourcePackage?.dataSource.item(at: indexPath.row) {
-                sourceCenter = sourceTable.convert(cell.center, to: view)
-                snapshot.center = pressPoint
-                dragView = snapshot
-                view.addSubview(snapshot)
-                sourceIndexHolder = indexPath
-                self.dragCellType = dragCellType
-                replaceCell(at: indexPath, with: .placeHolder, target: .source)
-            }
+            handleLongPress(pressPoint: pressPoint, pressCell: cell, in: sourcePackage!)
         case .changed:
-            let center = recognizer.location(in: view)
-            dragView.center = center
-            guard let destinationPackage = getPackage(contains: pressPoint), destinationPackage.tableView != sourcePackage?.tableView else {
-                if let destinationIndexHolder = self.destinationIndexHolder {
-                    removeCell(at: destinationIndexHolder, target: .destination)
-                    self.destinationPackage = nil
-                    self.destinationIndexHolder = nil
-                }
-                return
-            }
-            self.destinationPackage = destinationPackage
-            if destinationPackage.tableView.frame.contains(dragView.center) {
-                let location = view.convert(center, to: destinationPackage.tableView)
-                guard let indexPath = getIndexPath(ofCellAt: location, in: destinationPackage.tableView), let destinationPoint = destinationPackage.tableView.cellForRow(at: indexPath)?.center else {
-                    return
-                }
-                if let indexPathHolder = destinationIndexHolder {
-                    guard indexPathHolder != indexPath else { return }
-                    removeCell(at: indexPathHolder, target: .destination)
-                    insert(cellType: .placeHolder, at: indexPath, target: .destination)
-                } else {
-                    insert(cellType: .placeHolder, at: indexPath, target: .destination)
-                }
-                destinationIndexHolder = indexPath
-                destinationCenter = destinationPackage.tableView.convert(destinationPoint, to: view)
-            } else if let indexPath = destinationIndexHolder {
-                removeCell(at: indexPath, target: .destination)
-                destinationIndexHolder = nil
-            }
-        case .ended, .failed, .possible, .cancelled:
-            if let firstIndexPathHolder = sourceIndexHolder, let secondIndexPathHolder = destinationIndexHolder, let dragCellType = dragCellType {
-                removeCell(at: firstIndexPathHolder, target: .source)
-                UIView.animate(withDuration: 0.5, animations: {
-                    self.dragView.center = self.destinationCenter
-                }) { completed in
-                    self.replaceCell(at: secondIndexPathHolder, with: dragCellType, target: .destination)
-                    self.resetState()
-                }
-            } else {
-                UIView.animate(withDuration: 0.5, animations: {
-                    self.dragView.center = self.sourceCenter
-                }) { completed in
-                    guard let firstIndexPathHolder = self.sourceIndexHolder,
-                        let cellType = self.dragCellType else { return }
-                    self.replaceCell(at: firstIndexPathHolder, with: cellType, target: .source)
-                    self.resetState()
-                }
-            }
+            handleDrag(to: pressPoint)
+        case .ended:
+            handleRelease()
+        case .failed, .possible, .cancelled:
+            // TODO: Long press and release repeatedly cause bug
+            handleRelease()
         @unknown default:
             break
         }
     }
     
+    func handleLongPress(pressPoint: CGPoint, pressCell: UITableViewCell, in package: Package<CellType>) {
+        // Find pressed cell and take a snapshot to move
+        if let indexPath = package.tableView.indexPath(for: pressCell),
+            let snapshot = pressCell.snapshotView(afterScreenUpdates: false) {
+                let cellType = package.dataSource.item(at: indexPath.row)
+            snapshot.center = pressPoint
+            dragView = snapshot
+            view.addSubview(snapshot)
+            // Save drag item's information
+            sourceCenter = package.tableView.convert(pressCell.center, to: view)
+            sourceIndexHolder = indexPath
+            dragCellType = cellType
+            // Replace cell by placeholder cell
+            replaceCell(at: indexPath, with: .placeHolder, target: .source)
+        }
+    }
+    
+    func handleDrag(to point: CGPoint) {
+        dragView.center = point
+        guard let destinationPackage = getPackage(contains: point), destinationPackage.tableView != sourcePackage?.tableView else {
+            // Reset destination's info when drag cell outside previous destination
+            if let indexPath = self.destinationIndexHolder {
+                removeCell(at: indexPath, target: .destination)
+                self.destinationPackage = nil
+                self.destinationIndexHolder = nil
+            }
+            return
+        }
+        // In case the package which contain current point has found
+        self.destinationPackage = destinationPackage
+        let desTableView = destinationPackage.tableView
+            // Get location in destination tableView(drag point -> cell index -> center point)
+        let location = view.convert(point, to: desTableView)
+        guard let indexPath = getIndexPath(ofCellAt: location, in: desTableView), let desPoint = desTableView.cellForRow(at: indexPath)?.center else {
+            return
+        }
+            // Insert place holder cell in destination tableView
+        if let indexPathHolder = destinationIndexHolder {
+            guard indexPathHolder != indexPath else { return }
+            removeCell(at: indexPathHolder, target: .destination)
+            insert(cellType: .placeHolder, at: indexPath, target: .destination)
+        } else {
+            insert(cellType: .placeHolder, at: indexPath, target: .destination)
+        }
+        destinationIndexHolder = indexPath
+        destinationCenter = desTableView.convert(desPoint, to: view)
+    }
+    
+    func handleRelease() {
+        if let firstIndexPathHolder = sourceIndexHolder, let secondIndexPathHolder = destinationIndexHolder, let dragCellType = dragCellType {
+            // Move drag cell to destination tableView
+            removeCell(at: firstIndexPathHolder, target: .source)
+            UIView.animate(withDuration: 0.5, animations: {
+                self.dragView.center = self.destinationCenter
+            }) { completed in
+                self.replaceCell(at: secondIndexPathHolder, with: dragCellType, target: .destination)
+                self.resetState()
+            }
+        } else {
+            // Move drag cell to source tableView
+            UIView.animate(withDuration: 0.5, animations: {
+                self.dragView.center = self.sourceCenter
+            }) { completed in
+                guard let firstIndexPathHolder = self.sourceIndexHolder,
+                    let cellType = self.dragCellType else { return }
+                self.replaceCell(at: firstIndexPathHolder, with: cellType, target: .source)
+                self.resetState()
+            }
+        }
+    }
+    
     // MARK: Helper
+    /// Get the package contains tableView which contains a point in viewController's view
     func getPackage(contains point: CGPoint) -> Package<CellType>? {
         for package in packages {
             if package.tableView.frame.contains(point) {
@@ -144,6 +163,7 @@ class Drag_DropViewController: UIViewController {
         return nil
     }
     
+    // Replace a cell by another in a tableView (destination/source tableView)
     func replaceCell(at indexPath: IndexPath, with cellType: CellType, target: Target) {
         switch target {
         case .source:
@@ -157,6 +177,7 @@ class Drag_DropViewController: UIViewController {
         }
     }
     
+    // insert a cell to a target tableView (destination/source tableView)
     func insert(cellType: CellType, at indexPath: IndexPath, target: Target) {
         switch target {
         case .source:
@@ -168,6 +189,7 @@ class Drag_DropViewController: UIViewController {
         }
     }
     
+    // Remove a cell from a target tableView (destination/source tableView)
     func removeCell(at indexPath: IndexPath, target: Target) {
         switch target {
         case .source:
@@ -179,6 +201,7 @@ class Drag_DropViewController: UIViewController {
         }
     }
     
+    /// Reset to the original state
     func resetState() {
         dragCellType = nil
         dragView.removeFromSuperview()
@@ -238,6 +261,7 @@ extension Drag_DropViewController: UITableViewDataSource, UITableViewDelegate {
         }
     }
     
+    /// Get cell at a specific point in a tableView
     func getIndexPath(ofCellAt location: CGPoint, in tableView: UITableView) -> IndexPath? {
         let visibleCells = tableView.visibleCells
         for cell in visibleCells {
@@ -250,6 +274,7 @@ extension Drag_DropViewController: UITableViewDataSource, UITableViewDelegate {
 }
 
 extension Drag_DropViewController {
+    /// Cell Wrapper to use multiple cellType in table view
     enum CellType {
         case animal(_ animal: Animal)
         case placeHolder
@@ -258,45 +283,5 @@ extension Drag_DropViewController {
     enum Target {
         case source
         case destination
-    }
-}
-
-class DataSource<T> {
-    var items = [T]()
-    
-    init() {}
-    
-    init(items: [T]) {
-        self.items = items
-    }
-    
-    var count: Int {
-        return items.count
-    }
-    
-    func item(at index: Int) -> T {
-        return items[index]
-    }
-    
-    func remove(at index: Int) {
-        items.remove(at: index)
-    }
-    
-    func append(_ item: T) {
-        items.append(item)
-    }
-    
-    func insert(_ item: T, at index: Int) {
-        items.insert(item, at: index)
-    }
-}
-
-class Package<T> {
-    var tableView: UITableView
-    var dataSource: DataSource<T>
-    
-    init(tableView: UITableView, dataSource: DataSource<T>) {
-        self.tableView = tableView
-        self.dataSource = dataSource
     }
 }

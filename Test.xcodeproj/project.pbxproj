@@ -147,6 +147,8 @@
 		7B33E10C24A05E0F00E0D642 /* DataSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B33E10B24A05E0F00E0D642 /* DataSet.swift */; };
 		7B4EA2492490CDAE004A04E9 /* CoreAnimationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B4EA2482490CDAE004A04E9 /* CoreAnimationViewController.swift */; };
 		7B507991248753B80069119E /* CircleProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B507990248753B80069119E /* CircleProgressView.swift */; };
+		7B5AD76C24A59B2100826190 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B5AD76B24A59B2100826190 /* Package.swift */; };
+		7B5AD76E24A59B3700826190 /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B5AD76D24A59B3700826190 /* DataSource.swift */; };
 		7B5CB6E42480C0C50039E577 /* OBDMeterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B5CB6E32480C0C50039E577 /* OBDMeterView.swift */; };
 		7B7A141C249C672D0069CEE2 /* ShadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7A141B249C672D0069CEE2 /* ShadingView.swift */; };
 		7B7E1C7324690A790023CDBB /* CoreGraphicsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7E1C7224690A790023CDBB /* CoreGraphicsViewController.swift */; };
@@ -333,6 +335,8 @@
 		7B33E10B24A05E0F00E0D642 /* DataSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSet.swift; sourceTree = "<group>"; };
 		7B4EA2482490CDAE004A04E9 /* CoreAnimationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreAnimationViewController.swift; sourceTree = "<group>"; };
 		7B507990248753B80069119E /* CircleProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleProgressView.swift; sourceTree = "<group>"; };
+		7B5AD76B24A59B2100826190 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
+		7B5AD76D24A59B3700826190 /* DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSource.swift; sourceTree = "<group>"; };
 		7B5CB6E32480C0C50039E577 /* OBDMeterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OBDMeterView.swift; sourceTree = "<group>"; };
 		7B7A141B249C672D0069CEE2 /* ShadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadingView.swift; sourceTree = "<group>"; };
 		7B7E1C7224690A790023CDBB /* CoreGraphicsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreGraphicsViewController.swift; sourceTree = "<group>"; };
@@ -696,6 +700,8 @@
 				7B2D490F24A34F2E0005C531 /* Drag&DropViewController.swift */,
 				7BF421B424A453AD004457BD /* Animal.swift */,
 				7BF421BA24A457C1004457BD /* Cells */,
+				7B5AD76B24A59B2100826190 /* Package.swift */,
+				7B5AD76D24A59B3700826190 /* DataSource.swift */,
 			);
 			path = "Drag&Drop";
 			sourceTree = "<group>";
@@ -1083,6 +1089,7 @@
 				7B09CB6E246504CD00DFE73E /* IShapeRenderer.swift in Sources */,
 				7B09CB94246504CD00DFE73E /* DefaultValueFormatter.swift in Sources */,
 				7BF421B524A453AD004457BD /* Animal.swift in Sources */,
+				7B5AD76C24A59B2100826190 /* Package.swift in Sources */,
 				7B09CB9F246504CD00DFE73E /* Platform+Accessibility.swift in Sources */,
 				7B09CBE9246505AA00DFE73E /* HorizontalBarChartView.swift in Sources */,
 				7B09CB9B246504CD00DFE73E /* Platform+Touch Handling.swift in Sources */,
@@ -1132,6 +1139,7 @@
 				7B09CB63246504CD00DFE73E /* YAxisRenderer.swift in Sources */,
 				7B09CBED2465089100DFE73E /* BarChartRenderer.swift in Sources */,
 				7B09CB82246504CD00DFE73E /* IHighlighter.swift in Sources */,
+				7B5AD76E24A59B3700826190 /* DataSource.swift in Sources */,
 				7B09CBA5246504CD00DFE73E /* Description.swift in Sources */,
 				7B09CB90246504CD00DFE73E /* ChartAnimationEasing.swift in Sources */,
 				7BCA236623C6DFCD00F829B4 /* ViewController.swift in Sources */,
