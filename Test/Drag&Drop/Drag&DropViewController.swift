@@ -72,8 +72,8 @@ class Drag_DropViewController: UIViewController {
             if let indexPath = sourceTable.indexPath(for: cell),
                 let snapshot = cell.snapshotView(afterScreenUpdates: false),
                 let dragCellType = sourcePackage?.dataSource.item(at: indexPath.row) {
-                sourceCenter = cell.center
-                snapshot.center = recognizer.location(in: view)
+                sourceCenter = sourceTable.convert(cell.center, to: view)
+                snapshot.center = pressPoint
                 dragView = snapshot
                 view.addSubview(snapshot)
                 sourceIndexHolder = indexPath
@@ -81,15 +81,20 @@ class Drag_DropViewController: UIViewController {
                 replaceCell(at: indexPath, with: .placeHolder, target: .source)
             }
         case .changed:
-            guard let destinationPack = getPackage(contains: pressPoint), destinationPack.tableView != sourcePackage?.tableView else {
-                return
-            }
-            self.destinationPackage = destinationPack
             let center = recognizer.location(in: view)
             dragView.center = center
-            if destinationPack.tableView.frame.contains(dragView.center) {
-                let location = view.convert(center, to: destinationPack.tableView)
-                guard let indexPath = getIndexPath(ofCellAt: location, in: destinationPack.tableView) else {
+            guard let destinationPackage = getPackage(contains: pressPoint), destinationPackage.tableView != sourcePackage?.tableView else {
+                if let destinationIndexHolder = self.destinationIndexHolder {
+                    removeCell(at: destinationIndexHolder, target: .destination)
+                    self.destinationPackage = nil
+                    self.destinationIndexHolder = nil
+                }
+                return
+            }
+            self.destinationPackage = destinationPackage
+            if destinationPackage.tableView.frame.contains(dragView.center) {
+                let location = view.convert(center, to: destinationPackage.tableView)
+                guard let indexPath = getIndexPath(ofCellAt: location, in: destinationPackage.tableView), let destinationPoint = destinationPackage.tableView.cellForRow(at: indexPath)?.center else {
                     return
                 }
                 if let indexPathHolder = destinationIndexHolder {
@@ -100,18 +105,20 @@ class Drag_DropViewController: UIViewController {
                     insert(cellType: .placeHolder, at: indexPath, target: .destination)
                 }
                 destinationIndexHolder = indexPath
+                destinationCenter = destinationPackage.tableView.convert(destinationPoint, to: view)
             } else if let indexPath = destinationIndexHolder {
                 removeCell(at: indexPath, target: .destination)
                 destinationIndexHolder = nil
             }
         case .ended, .failed, .possible, .cancelled:
             if let firstIndexPathHolder = sourceIndexHolder, let secondIndexPathHolder = destinationIndexHolder, let dragCellType = dragCellType {
-                replaceCell(at: secondIndexPathHolder, with: dragCellType, target: .destination)
                 removeCell(at: firstIndexPathHolder, target: .source)
-                self.destinationIndexHolder = nil
-                self.sourceIndexHolder = nil
-                dragView.removeFromSuperview()
-                dragView = UIView()
+                UIView.animate(withDuration: 0.5, animations: {
+                    self.dragView.center = self.destinationCenter
+                }) { completed in
+                    self.replaceCell(at: secondIndexPathHolder, with: dragCellType, target: .destination)
+                    self.resetState()
+                }
             } else {
                 UIView.animate(withDuration: 0.5, animations: {
                     self.dragView.center = self.sourceCenter
@@ -119,10 +126,7 @@ class Drag_DropViewController: UIViewController {
                     guard let firstIndexPathHolder = self.sourceIndexHolder,
                         let cellType = self.dragCellType else { return }
                     self.replaceCell(at: firstIndexPathHolder, with: cellType, target: .source)
-                    self.dragView.removeFromSuperview()
-                    self.dragView = UIView()
-                    self.destinationIndexHolder = nil
-                    self.sourceIndexHolder = nil
+                    self.resetState()
                 }
             }
         @unknown default:
@@ -173,6 +177,18 @@ class Drag_DropViewController: UIViewController {
             destinationPackage?.dataSource.remove(at: indexPath.row)
             destinationPackage?.tableView.deleteRows(at: [indexPath], with: .fade)
         }
+    }
+    
+    func resetState() {
+        dragCellType = nil
+        dragView.removeFromSuperview()
+        dragView = UIView()
+        sourceCenter = .zero
+        destinationCenter = .zero
+        sourceIndexHolder = nil
+        destinationIndexHolder = nil
+        sourcePackage = nil
+        destinationPackage = nil
     }
 }
 
