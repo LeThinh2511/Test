@@ -11,6 +11,21 @@ import UIKit
 
 typealias Gradient = (color: UIColor, location: Float)
 extension UIView {
+    func removeAllSubviews() {
+        for subview in subviews {
+            subview.removeFromSuperview()
+        }
+    }
+    
+    func embed(in view: UIView) {
+        self.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(self)
+        self.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        self.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        self.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        self.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+    }
+    
     func setGradients(gradients: [Gradient], angle: Int = 0) {
         let tanValue = tan(Double(angle) * Double.pi / 180)
         

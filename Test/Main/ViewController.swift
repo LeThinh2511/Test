@@ -33,5 +33,14 @@ class ViewController: UIViewController {
         let view = LineChartViewController()
         navigationController?.pushViewController(view, animated: true)
     }
+    
+    @IBAction func didTapButton(_ sender: UIButton) {
+        switch sender.titleLabel?.text {
+        case "Keno Tutorial":
+            let view = KenoTutorialViewController()
+            navigationController?.pushViewController(view, animated: true)
+        default: break
+        }
+    }
 }
 

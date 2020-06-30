@@ -149,6 +149,12 @@
 		7B507991248753B80069119E /* CircleProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B507990248753B80069119E /* CircleProgressView.swift */; };
 		7B5AD76C24A59B2100826190 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B5AD76B24A59B2100826190 /* Package.swift */; };
 		7B5AD76E24A59B3700826190 /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B5AD76D24A59B3700826190 /* DataSource.swift */; };
+		7B5AD77224A5A92400826190 /* KenoTutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B5AD77024A5A92400826190 /* KenoTutorialViewController.swift */; };
+		7B5AD77324A5A92400826190 /* KenoTutorialViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B5AD77124A5A92400826190 /* KenoTutorialViewController.xib */; };
+		7B5AD77524A5AEB200826190 /* BlueButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B5AD77424A5AEB200826190 /* BlueButton.swift */; };
+		7B5AD77824A5EEA200826190 /* SquircleIntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B5AD77724A5EEA200826190 /* SquircleIntroView.swift */; };
+		7B5AD77A24A5EEB300826190 /* SquircleIntroView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B5AD77924A5EEB300826190 /* SquircleIntroView.xib */; };
+		7B5AD77C24A5EEE400826190 /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B5AD77B24A5EEE400826190 /* CustomView.swift */; };
 		7B5CB6E42480C0C50039E577 /* OBDMeterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B5CB6E32480C0C50039E577 /* OBDMeterView.swift */; };
 		7B7A141C249C672D0069CEE2 /* ShadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7A141B249C672D0069CEE2 /* ShadingView.swift */; };
 		7B7E1C7324690A790023CDBB /* CoreGraphicsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7E1C7224690A790023CDBB /* CoreGraphicsViewController.swift */; };
@@ -337,6 +343,12 @@
 		7B507990248753B80069119E /* CircleProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleProgressView.swift; sourceTree = "<group>"; };
 		7B5AD76B24A59B2100826190 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		7B5AD76D24A59B3700826190 /* DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSource.swift; sourceTree = "<group>"; };
+		7B5AD77024A5A92400826190 /* KenoTutorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KenoTutorialViewController.swift; sourceTree = "<group>"; };
+		7B5AD77124A5A92400826190 /* KenoTutorialViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KenoTutorialViewController.xib; sourceTree = "<group>"; };
+		7B5AD77424A5AEB200826190 /* BlueButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlueButton.swift; sourceTree = "<group>"; };
+		7B5AD77724A5EEA200826190 /* SquircleIntroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SquircleIntroView.swift; sourceTree = "<group>"; };
+		7B5AD77924A5EEB300826190 /* SquircleIntroView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SquircleIntroView.xib; sourceTree = "<group>"; };
+		7B5AD77B24A5EEE400826190 /* CustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomView.swift; sourceTree = "<group>"; };
 		7B5CB6E32480C0C50039E577 /* OBDMeterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OBDMeterView.swift; sourceTree = "<group>"; };
 		7B7A141B249C672D0069CEE2 /* ShadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadingView.swift; sourceTree = "<group>"; };
 		7B7E1C7224690A790023CDBB /* CoreGraphicsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreGraphicsViewController.swift; sourceTree = "<group>"; };
@@ -699,9 +711,9 @@
 			children = (
 				7B2D490F24A34F2E0005C531 /* Drag&DropViewController.swift */,
 				7BF421B424A453AD004457BD /* Animal.swift */,
-				7BF421BA24A457C1004457BD /* Cells */,
 				7B5AD76B24A59B2100826190 /* Package.swift */,
 				7B5AD76D24A59B3700826190 /* DataSource.swift */,
+				7BF421BA24A457C1004457BD /* Cells */,
 			);
 			path = "Drag&Drop";
 			sourceTree = "<group>";
@@ -716,6 +728,26 @@
 				7BC19D3F24A1B085000191EB /* BezierConfiguration.swift */,
 			);
 			path = Chart;
+			sourceTree = "<group>";
+		};
+		7B5AD76F24A5A7F200826190 /* Keno */ = {
+			isa = PBXGroup;
+			children = (
+				7B5AD77024A5A92400826190 /* KenoTutorialViewController.swift */,
+				7B5AD77124A5A92400826190 /* KenoTutorialViewController.xib */,
+				7B5AD77424A5AEB200826190 /* BlueButton.swift */,
+				7B5AD77624A5EE6900826190 /* CustomViews */,
+			);
+			path = Keno;
+			sourceTree = "<group>";
+		};
+		7B5AD77624A5EE6900826190 /* CustomViews */ = {
+			isa = PBXGroup;
+			children = (
+				7B5AD77724A5EEA200826190 /* SquircleIntroView.swift */,
+				7B5AD77924A5EEB300826190 /* SquircleIntroView.xib */,
+			);
+			path = CustomViews;
 			sourceTree = "<group>";
 		};
 		7B5CB6E22480BC3C0039E577 /* SSpeed */ = {
@@ -755,6 +787,7 @@
 				7BCAB7EF2463F57000D87B67 /* UIColorExtension.swift */,
 				7B18585D246A6566006C6A67 /* StringExtension.swift */,
 				7BF421B224A452CA004457BD /* NSObjectExtension.swift */,
+				7B5AD77B24A5EEE400826190 /* CustomView.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -817,6 +850,7 @@
 			children = (
 				7BCA236F23C6DFCE00F829B4 /* Info.plist */,
 				7BCA236123C6DFCD00F829B4 /* AppDelegate.swift */,
+				7B5AD76F24A5A7F200826190 /* Keno */,
 				7B5CB6E22480BC3C0039E577 /* SSpeed */,
 				7B7E1C71246907890023CDBB /* Main */,
 				3296DD80246FC7D500CEDF3A /* Core Animation */,
@@ -982,6 +1016,8 @@
 				7BCA236B23C6DFCE00F829B4 /* Assets.xcassets in Resources */,
 				7BF421B124A4527D004457BD /* AnimalCell.xib in Resources */,
 				7BF421B924A4573F004457BD /* PlaceholderCell.xib in Resources */,
+				7B5AD77324A5A92400826190 /* KenoTutorialViewController.xib in Resources */,
+				7B5AD77A24A5EEB300826190 /* SquircleIntroView.xib in Resources */,
 				7B09CBFB24650EC500DFE73E /* LineChartViewController.xib in Resources */,
 				7BCA236923C6DFCD00F829B4 /* Main.storyboard in Resources */,
 			);
@@ -1108,7 +1144,9 @@
 				7B09CB5E246504CD00DFE73E /* YAxisRendererHorizontalBarChart.swift in Sources */,
 				7B09CB99246504CD00DFE73E /* Fill.swift in Sources */,
 				7B09CBD7246504CD00DFE73E /* IBarChartDataSet.swift in Sources */,
+				7B5AD77C24A5EEE400826190 /* CustomView.swift in Sources */,
 				7B09CBCD246504CD00DFE73E /* LineChartDataSet.swift in Sources */,
+				7B5AD77224A5A92400826190 /* KenoTutorialViewController.swift in Sources */,
 				7B09CBDC246504CD00DFE73E /* IBubbleChartDataSet.swift in Sources */,
 				7B09CBE4246504CD00DFE73E /* ScatterChartDataProvider.swift in Sources */,
 				7B09CB93246504CD00DFE73E /* DefaultFillFormatter.swift in Sources */,
@@ -1141,6 +1179,7 @@
 				7B09CB82246504CD00DFE73E /* IHighlighter.swift in Sources */,
 				7B5AD76E24A59B3700826190 /* DataSource.swift in Sources */,
 				7B09CBA5246504CD00DFE73E /* Description.swift in Sources */,
+				7B5AD77824A5EEA200826190 /* SquircleIntroView.swift in Sources */,
 				7B09CB90246504CD00DFE73E /* ChartAnimationEasing.swift in Sources */,
 				7BCA236623C6DFCD00F829B4 /* ViewController.swift in Sources */,
 				7B09CBDB246504CD00DFE73E /* ILineScatterCandleRadarChartDataSet.swift in Sources */,
@@ -1213,6 +1252,7 @@
 				7B09CBC1246504CD00DFE73E /* LineRadarChartDataSet.swift in Sources */,
 				7B09CBEF246508B300DFE73E /* BarLineScatterCandleBubbleRenderer.swift in Sources */,
 				7B09CBA3246504CD00DFE73E /* Platform+Color.swift in Sources */,
+				7B5AD77524A5AEB200826190 /* BlueButton.swift in Sources */,
 				7B09CBB5246504CD00DFE73E /* AnimatedMoveViewJob.swift in Sources */,
 				7B09CB5D246504CD00DFE73E /* LegendRenderer.swift in Sources */,
 				7B2D491024A34F2E0005C531 /* Drag&DropViewController.swift in Sources */,
