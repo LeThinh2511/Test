@@ -12,14 +12,32 @@ import UIKit
 class SquircleView: UIView {
     private let configuration = BezierConfiguration()
     
-    @IBInspectable var color: UIColor = .white
-    @IBInspectable var colorBorder: UIColor = .gray
-    @IBInspectable var widthBorder: CGFloat = 0
+    @IBInspectable var colorFill: UIColor = .white {
+        didSet {
+            setNeedsDisplay()
+        }
+    }
+    @IBInspectable var colorBorder: UIColor = .gray {
+        didSet {
+            setNeedsDisplay()
+        }
+    }
+    @IBInspectable var widthBorder: CGFloat = 0 {
+        didSet {
+            setNeedsDisplay()
+        }
+    }
     @IBInspectable var image: UIImage?
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        backgroundColor = .clear
+        setupUI()
+    }
+    
+    convenience init(frame: CGRect, image: UIImage?) {
+        self.init(frame: frame)
+        self.image = image
+        setupUI()
     }
     
     override func draw(_ rect: CGRect) {
@@ -28,11 +46,11 @@ class SquircleView: UIView {
         let width = bounds.width
         let offset = shadowRadius
         
-        let topX: CGFloat = height / 9 + offset
+        let topX: CGFloat = height / 10 + offset
         let topY: CGFloat = height / 8 + offset
         
-        let bottomX: CGFloat = height / 10 + offset
-        let bottomY: CGFloat = height / 8 + offset
+        let bottomX: CGFloat = height / 11 + offset
+        let bottomY: CGFloat = height / 9 + offset
         
         let topLeftPoint = CGPoint(x: topX, y: topY)
         let topCenterPoint = CGPoint(x: width / 2, y: offset)
@@ -40,7 +58,7 @@ class SquircleView: UIView {
         let centerRightPoint = CGPoint(x: width - offset, y: height / 2)
         let bottomRightPoint = CGPoint(x: width - bottomX, y: height - bottomY)
         let bottomCenterPoint = CGPoint(x: width / 2, y: height - offset)
-        let bottmLeftPoint = CGPoint(x: bottomX, y: height - bottomY)
+        let bottomLeftPoint = CGPoint(x: bottomX, y: height - bottomY)
         let centerLeftPoint = CGPoint(x: offset, y: height / 2)
         
         let endPoints = [
@@ -50,11 +68,20 @@ class SquircleView: UIView {
             centerRightPoint,
             bottomRightPoint,
             bottomCenterPoint,
-            bottmLeftPoint,
+            bottomLeftPoint,
             centerLeftPoint,
             topLeftPoint,
             topCenterPoint,
-            topRightPoint
+            topRightPoint,
+            centerRightPoint,
+            bottomRightPoint,
+            bottomCenterPoint,
+            bottomLeftPoint,
+            centerLeftPoint,
+            topLeftPoint,
+            topCenterPoint,
+            topRightPoint,
+            centerRightPoint,
         ]
         
         let controlPoints = configuration.configureControlPoints(data: endPoints)
@@ -67,21 +94,29 @@ class SquircleView: UIView {
             path.addCurve(to: endPoint, controlPoint1: controlPoints[i - 1].firstControlPoint, controlPoint2: controlPoints[i - 1].secondControlPoint)
         }
         
+        colorBorder.setFill()
+        path.fill()
+        
         context.addPath(path.cgPath)
         context.clip()
         
-        colorBorder.setFill()
-        path.fill()
-
         context.saveGState()
-        let scaleX = (width - widthBorder * 5) / width
-        let scaleY = (height - widthBorder * 5) / height
-        let translationX = widthBorder * 5 / 2
-        color.setFill()
+        let spacing = widthBorder
+        let scaleX = (width - spacing * 2) / width
+        let scaleY = (height - spacing * 2) / height
+        let translationX = (width - width * scaleX) / 2
+        let translationY = (height - height * scaleY) / 2
+        context.translateBy(x: translationX, y: translationY)
         context.scaleBy(x: scaleX, y: scaleY)
-        context.translateBy(x: translationX, y: translationX)
+        colorFill.setFill()
         path.fill()
         context.restoreGState()
+        
+        path.apply(CGAffineTransform(scaleX: scaleX, y: scaleY))
+        path.apply(CGAffineTransform(translationX: translationX, y: translationY))
+        
+        context.addPath(path.cgPath)
+        context.clip()
         
         if let image = image?.cgImage {
             let size = getNewSize(image: image)
@@ -116,5 +151,9 @@ class SquircleView: UIView {
                 return CGSize(width: width, height: bounds.height)
             }
         }
+    }
+    
+    private func setupUI() {
+        backgroundColor = .clear
     }
 }

@@ -10,22 +10,21 @@ import UIKit
 
 class SquircleIntroView: CustomView {
     @IBOutlet weak var outerSquircleView: SquircleView!
-    @IBOutlet weak var innerSquircleView: SquircleView!
     @IBOutlet weak var iconImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var squircleLeftPaddingConstraint: NSLayoutConstraint!
-    @IBOutlet weak var squirleTopPaddingConstraint: NSLayoutConstraint!
     @IBOutlet weak var titleLabelTopConstraint: NSLayoutConstraint!
     
     var image: UIImage?
     var title: String?
+    var widthBorder: CGFloat = 0
+    var colorBorder: UIColor = .white
     
-    convenience init(size: CGFloat, image: UIImage?, title: String?) {
+    convenience init(size: CGFloat, border: CGFloat = 0, borderColor: UIColor = .white, image: UIImage? = nil, title: String? = nil) {
         self.init(frame: CGRect(x: 0, y: 0, width: size, height: size))
         self.image = image
         self.title = title
-        squircleLeftPaddingConstraint.constant = size / 16
-        squirleTopPaddingConstraint.constant = size / 16
+        self.widthBorder = border
+        self.colorBorder = borderColor
         setupUI()
     }
     
@@ -52,7 +51,9 @@ class SquircleIntroView: CustomView {
         outerSquircleView.shadowRadius = 4
         outerSquircleView.shadowOpacity = 0.2
         outerSquircleView.shadowOffset = .zero
-        innerSquircleView.image = image
+        outerSquircleView.image = image
+        outerSquircleView.widthBorder = widthBorder
+        outerSquircleView.colorBorder = colorBorder
         titleLabel.text = title
         titleLabel.alpha = 0
         iconImageView.alpha = 0

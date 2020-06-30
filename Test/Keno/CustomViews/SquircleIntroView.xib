@@ -13,10 +13,7 @@
             <connections>
                 <outlet property="contentView" destination="iN0-l3-epB" id="dxD-P2-7EZ"/>
                 <outlet property="iconImageView" destination="CBD-Hk-DEF" id="QgN-oV-R1Z"/>
-                <outlet property="innerSquircleView" destination="AXD-yu-Mux" id="Djz-9b-XPb"/>
                 <outlet property="outerSquircleView" destination="FcQ-MT-f6v" id="pJE-7T-CEm"/>
-                <outlet property="squircleLeftPaddingConstraint" destination="zZ8-ax-QCu" id="uTw-95-82G"/>
-                <outlet property="squirleTopPaddingConstraint" destination="qxk-LX-qZm" id="4oi-d7-TzX"/>
                 <outlet property="titleLabel" destination="D2T-GY-zpS" id="Hwv-GJ-H5P"/>
                 <outlet property="titleLabelTopConstraint" destination="i21-Iy-Iit" id="c5d-wa-HFf"/>
             </connections>
@@ -26,16 +23,12 @@
             <rect key="frame" x="0.0" y="0.0" width="290" height="286"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FcQ-MT-f6v" customClass="SquircleView" customModule="Test" customModuleProvider="target">
+                <view contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="FcQ-MT-f6v" customClass="SquircleView" customModule="Test" customModuleProvider="target">
                     <rect key="frame" x="41.5" y="0.0" width="248.5" height="248.5"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="FcQ-MT-f6v" secondAttribute="height" id="LkY-Nc-3FL"/>
                     </constraints>
-                </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AXD-yu-Mux" customClass="SquircleView" customModule="Test" customModuleProvider="target">
-                    <rect key="frame" x="56.5" y="15" width="218.5" height="218.5"/>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D2T-GY-zpS">
                     <rect key="frame" x="144.5" y="248.5" width="42" height="37.5"/>
@@ -53,18 +46,14 @@
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="FcQ-MT-f6v" secondAttribute="trailing" id="54B-vF-aqr"/>
-                <constraint firstItem="AXD-yu-Mux" firstAttribute="centerX" secondItem="FcQ-MT-f6v" secondAttribute="centerX" id="HzN-st-SE0"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="D2T-GY-zpS" secondAttribute="bottom" priority="999" id="b6i-Na-jYP"/>
                 <constraint firstItem="CBD-Hk-DEF" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="b7g-Vv-9cH"/>
                 <constraint firstItem="CBD-Hk-DEF" firstAttribute="centerY" secondItem="FcQ-MT-f6v" secondAttribute="centerY" id="cKJ-hU-abT"/>
                 <constraint firstItem="D2T-GY-zpS" firstAttribute="centerX" secondItem="FcQ-MT-f6v" secondAttribute="centerX" id="eJx-i4-0Md"/>
-                <constraint firstItem="AXD-yu-Mux" firstAttribute="centerY" secondItem="FcQ-MT-f6v" secondAttribute="centerY" id="gbr-Pa-7fC"/>
                 <constraint firstItem="D2T-GY-zpS" firstAttribute="top" secondItem="FcQ-MT-f6v" secondAttribute="bottom" id="i21-Iy-Iit"/>
-                <constraint firstItem="AXD-yu-Mux" firstAttribute="top" secondItem="FcQ-MT-f6v" secondAttribute="top" constant="15" id="qxk-LX-qZm"/>
                 <constraint firstItem="FcQ-MT-f6v" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="rzy-en-wqj"/>
                 <constraint firstItem="CBD-Hk-DEF" firstAttribute="centerX" secondItem="FcQ-MT-f6v" secondAttribute="leading" id="vCC-dz-zfP"/>
                 <constraint firstItem="CBD-Hk-DEF" firstAttribute="height" secondItem="FcQ-MT-f6v" secondAttribute="height" multiplier="1/3" id="zY8-12-4oP"/>
-                <constraint firstItem="AXD-yu-Mux" firstAttribute="leading" secondItem="FcQ-MT-f6v" secondAttribute="leading" constant="15" id="zZ8-ax-QCu"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>

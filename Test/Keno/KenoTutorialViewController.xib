@@ -73,7 +73,7 @@
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yoh-pH-4zP">
                                             <rect key="frame" x="0.0" y="60" width="334" height="334"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CFV-yX-BdF" customClass="SquircleView" customModule="Test" customModuleProvider="target">
+                                                <view contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="CFV-yX-BdF" customClass="SquircleView" customModule="Test" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="0.0" width="334" height="334"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                     <userDefinedRuntimeAttributes>
@@ -92,27 +92,23 @@
                                                         <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
                                                             <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </userDefinedRuntimeAttribute>
-                                                    </userDefinedRuntimeAttributes>
-                                                </view>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Wp-Fd-qCq" customClass="SquircleView" customModule="Test" customModuleProvider="target">
-                                                    <rect key="frame" x="15" y="15" width="304" height="304"/>
-                                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                                    <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="image" keyPath="image" value="car_image"/>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="widthBorder">
+                                                            <real key="value" value="15"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="color" keyPath="colorBorder">
+                                                            <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
                                             </subviews>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                             <constraints>
-                                                <constraint firstItem="9Wp-Fd-qCq" firstAttribute="top" secondItem="CFV-yX-BdF" secondAttribute="top" constant="15" id="G6j-Bj-Thl"/>
                                                 <constraint firstItem="CFV-yX-BdF" firstAttribute="leading" secondItem="yoh-pH-4zP" secondAttribute="leading" id="Pou-qb-twi"/>
-                                                <constraint firstItem="9Wp-Fd-qCq" firstAttribute="centerX" secondItem="CFV-yX-BdF" secondAttribute="centerX" id="V4p-5T-v0h"/>
                                                 <constraint firstAttribute="width" secondItem="yoh-pH-4zP" secondAttribute="height" id="VbM-5K-bS9"/>
                                                 <constraint firstItem="CFV-yX-BdF" firstAttribute="top" secondItem="yoh-pH-4zP" secondAttribute="top" id="Z6A-OJ-F5j"/>
-                                                <constraint firstItem="9Wp-Fd-qCq" firstAttribute="leading" secondItem="CFV-yX-BdF" secondAttribute="leading" constant="15" id="eYJ-vb-a4h"/>
                                                 <constraint firstItem="CFV-yX-BdF" firstAttribute="centerY" secondItem="yoh-pH-4zP" secondAttribute="centerY" id="fzG-IP-1Sy"/>
                                                 <constraint firstItem="CFV-yX-BdF" firstAttribute="centerX" secondItem="yoh-pH-4zP" secondAttribute="centerX" id="gQV-NQ-8Yh"/>
-                                                <constraint firstItem="9Wp-Fd-qCq" firstAttribute="centerY" secondItem="CFV-yX-BdF" secondAttribute="centerY" id="h2l-oF-gm1"/>
                                             </constraints>
                                         </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ADD VEHICLES" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6yc-uI-bte">
@@ -226,7 +222,7 @@
         <image name="car_image" width="680" height="453"/>
         <image name="ic_next_arrow" width="24" height="24"/>
         <namedColor name="primary">
-            <color red="0.18431372549019609" green="0.72941176470588232" blue="0.94117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.18400000035762787" green="0.72899997234344482" blue="0.94099998474121094" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

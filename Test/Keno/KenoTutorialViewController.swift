@@ -40,7 +40,6 @@ class KenoTutorialViewController: UIViewController {
     }
     
     private func showSelectServiceIntro() {
-        introContainerView.removeAllSubviews()
         let halfWidth = introContainerView.frame.width / 2
         let halfHeight = introContainerView.frame.height / 2
         
@@ -48,19 +47,19 @@ class KenoTutorialViewController: UIViewController {
         let topLeftImage = UIImage(named: "car_image")
         let topLeftStart: CGPoint = .zero
         let topLeftEnd: CGPoint = CGPoint(x: halfWidth / 2, y: halfHeight / 2)
-        let topLeftView = SquircleIntroView(size: topLeftRate * halfWidth, image: topLeftImage, title: "Detailing")
+        let topLeftView = SquircleIntroView(size: topLeftRate * halfWidth, border: 8, image: topLeftImage, title: "Detailing")
         
         let topRightRate: CGFloat = 0.9
         let topRightImage = UIImage(named: "im_car_2")
         let topRightStart = CGPoint(x: introContainerView.frame.width, y: 0)
         let topRightEnd: CGPoint = CGPoint(x: halfWidth * 1.5, y: halfHeight / 2)
-        let topRightView = SquircleIntroView(size: topRightRate * halfWidth, image: topRightImage, title: "Maintenance")
+        let topRightView = SquircleIntroView(size: topRightRate * halfWidth, border: 10, image: topRightImage, title: "Maintenance")
         
         let bottomRate: CGFloat = 1.0
         let bottomImage = UIImage(named: "car_image")
         let bottomStart = CGPoint(x: halfWidth, y: introContainerView.frame.height)
         let bottomEnd: CGPoint = CGPoint(x: halfWidth, y: halfHeight * 1.5)
-        let bottomView = SquircleIntroView(size: bottomRate * halfWidth, image: bottomImage, title: "Car Wash")
+        let bottomView = SquircleIntroView(size: bottomRate * halfWidth, border: 12, image: bottomImage, title: "Car Wash")
         
         introContainerView.addSubview(topLeftView)
         introContainerView.addSubview(topRightView)
@@ -87,6 +86,36 @@ class KenoTutorialViewController: UIViewController {
     }
     
     private func showScheduleIntro() {
-        
+        let image = UIImage(named: "im_map")
+        let mapView = SquircleView(frame: introContainerView.frame, image: image)
+        mapView.contentMode = .scaleAspectFill
+        mapView.embed(in: introContainerView)
+        mapView.shadowRadius = 8
+        mapView.shadowOpacity = 0.2
+        mapView.shadowColor = .black
+        mapView.shadowOffset = .zero
+        mapView.colorBorder = .white
+        mapView.widthBorder = 10
+        let transformStart = CGAffineTransform(scaleX: 0.8, y: 0.8)
+        let transformEnd = CGAffineTransform(scaleX: 1.02, y: 1.02)
+        mapView.alpha = 0
+        mapView.transform = transformStart
+        UIView.animate(withDuration: 0.4, animations: {
+            mapView.transform = transformEnd
+            mapView.alpha = 1
+        }) { completed in
+            UIView.animate(withDuration: 0.1, animations: {
+                mapView.transform = .identity
+            }) { completed in
+                let image = UIImage(named: "ic_marker")
+                let imageView = UIImageView(image: image)
+                imageView.center = CGPoint(x: self.introContainerView.frame.width / 2, y: self.introContainerView.frame.height * 0.8)
+                self.introContainerView.addSubview(imageView)
+                imageView.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
+                UIView.animate(withDuration: 0.5) {
+                    imageView.transform = .identity
+                }
+            }
+        }
     }
 }
